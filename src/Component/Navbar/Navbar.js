@@ -21,7 +21,7 @@ const Navbar = () => {
     const ismybookings = str.includes("/mybookings");
     const islogin = str.includes("/login");
     const isAboutUs = str.includes("/aboutus");
-
+    const [isDownloadDropdownOpen, setIsDownloadDropdownOpen] = useState(false);
     return (
         <nav className={`navbar navbar-expand-lg navbar-light ${isSticky ? "stickynav" : "normalnav"}`} >
             <div className="container-fluid">
@@ -39,7 +39,7 @@ const Navbar = () => {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav  mb-2 mb-lg-0 ms-auto" style={{ marginRight: '2%' }}>
+                    <ul className="navbar-nav  mb-2 mb-lg-0 ms-auto" style={{ marginRight: '5%' }}>
                         <li className="nav-item">
                             <a className={`nav-link nav-link-a-text me-3 ${isHome ? 'active' : ''}`} href="/home">Home</a>
                         </li>
@@ -56,8 +56,36 @@ const Navbar = () => {
                             <a className={`nav-link nav-link-a-text me-3 ${isAboutUs ? 'active' : ''}`} href="/aboutus" >About Us</a>
                         </li>
 
-                        <li className="nav-item">
-                            <a className={`nav-link nav-link-a-text me-3 ${islogin ? 'active' : ''}`} href="/login" >Login</a>
+                        <li className="nav-item dropdown" onClick={() => setIsDownloadDropdownOpen(!isDownloadDropdownOpen)}>
+                            <a
+                                className={` nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
+                                type="button"
+                                role="button"
+                                id="downLoadDropdown"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded={isDownloadDropdownOpen}
+                            >
+                                Login
+                            </a>
+                            <ul className={`dropdown-menu${isDownloadDropdownOpen ? ' show' : ''}`} aria-labelledby="downLoadDropdown">
+                                <li>
+                                    <a
+                                        className={`dropdown-item `}
+                                        href="/login"
+                                    >
+                                        Agent Login
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className={`dropdown-item `}
+                                        href="/login"
+                                    >
+                                        User Login
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

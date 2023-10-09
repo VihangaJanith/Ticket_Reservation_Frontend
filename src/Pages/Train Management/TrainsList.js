@@ -41,7 +41,7 @@ function TrainsList() {
                   <p className="card-text">Destination: {train.to}</p>
                   <p className="card-text">Departure: {train.departureTime}</p>
                   <p className="card-text">Arrival: {train.arrivalTime}</p>
-                  <button className="btn btn-primary w-100 mt-2">
+                  <button className="btn btn-primary w-100 mt-2" onClick={() => { window.location.replace(`/addbooking/${train.id}`) }}>
                     Book Now
                   </button>
                 </div>
