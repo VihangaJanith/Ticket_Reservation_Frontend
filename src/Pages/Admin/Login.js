@@ -149,7 +149,7 @@ export default function RegisterUser({ }) {
 
                                 <input className="inputabc" type="text" placeholder="Email" id='logemail' value={Email} onChange={(e) => { setEmail(e.target.value); }} />
                                 <input className="inputabc" type="password" placeholder="Password" id='logpass' value={Password} onChange={(e) => { setPassword(e.target.value); }} />
-                                <a href="/forget" className="a123" >Forgot your password?</a>
+                                <a href="/reset" className="a123" >Forgot your password?</a>
                                 <button className="button12  ">Sign In</button>
                             </form>
 
