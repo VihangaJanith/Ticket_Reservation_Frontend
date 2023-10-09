@@ -4,28 +4,14 @@ import React, { useEffect, useState } from "react";
 function AllAgents() {
   const [AllUsers, setAllUsers] = useState([]);
 
+
   useEffect(() => {
-      setAllUsers( [
-        {
-          id: "652466a49b73031e3e4adc98",
-          name: "kavindu",
-          email: "888",
-          mobileNumber: "888",
-          userRole: "1",
-        },
-        {
-          id: "652466a49b73031e3e4adc98",
-          name: "kavindu",
-          email: "888",
-          mobileNumber: "888",
-          userRole: "0",
-        },
-      ]);
-      
-
+    axios.get("http://localhost:5068/api/Admin").then((res) => {
+      console.log(res.data);
+      setAllUsers(res.data);
+    });
   }, []);
-
-  
+ 
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5068/api/User/${id}`);

@@ -21,6 +21,7 @@ import BookingUpadate from "./Pages/Booking/BookingUpadate";
 import Footer from "./Component/Footer/Footer";
 import AllAgents from "./Pages/Admin/AllAgents";
 import ProfileEditAdmin from "./Pages/Admin/Profile";
+import Reset from "./Pages/Admin/RestPass";
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function App() {
           <Route path="/editbooking/:id" element={<BookingUpadate />} />
           <Route path="/allagents" element={<AllAgents />} />
           <Route path="/adminProfile" element={<ProfileEditAdmin />} />
+          <Route path="/reset" element={<Reset />} />
+
         </Routes>
       </Router>
       <Footer />
