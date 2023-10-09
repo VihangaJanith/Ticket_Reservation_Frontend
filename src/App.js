@@ -23,6 +23,7 @@ import AllAgents from "./Pages/Admin/AllAgents";
 import ProfileEditAdmin from "./Pages/Admin/Profile";
 import Reset from "./Pages/Admin/RestPass";
 import AdminHome from "./Pages/Admin/Dashboard";
+import AboutUs from "./Pages/AboutUs";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+
+          <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/trainsList" element={<TrainsList />} />
