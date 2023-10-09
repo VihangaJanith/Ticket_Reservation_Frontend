@@ -8,10 +8,18 @@ import TrainsList from "./Pages/Train Management/TrainsList";
 import AddTrain from "./Pages/Train Management/AddTrain";
 import AllTrains from "./Pages/Train Management/AllTrains";
 import EditTrain from "./Pages/Train Management/EditTrain";
+<<<<<<< HEAD
 import UserProfile from "./Pages/User/UserProfile";
 import EditAccount from "./Pages/User/EditAccount";
 import AllUsers from "./Pages/User/AllUsers";
 import EditUserAdmin from "./Pages/User/EditUserAdmin";
+=======
+import ViewAllBooking from "./Pages/Booking/ViewAllBooking";
+import ViewMyBookings from "./Pages/Booking/ViewMyBookings";
+import BookingCreate from "./Pages/Booking/BookingCreate";
+import BookingUpadate from "./Pages/Booking/BookingUpadate";
+import Footer from "./Component/Footer/Footer";
+>>>>>>> 81eceb64478d3f5c91f687be60cb2b6c8191981a
 
 function App() {
   return (
@@ -26,12 +34,20 @@ function App() {
           <Route path="/addtrain" element={<AddTrain />} />
           <Route path="/alltrains" element={<AllTrains />} />
           <Route path="/edittrain/:id" element={<EditTrain />} />
+<<<<<<< HEAD
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/editprofile" element={<EditAccount />} />
           <Route path="/allusers" element={<AllUsers />} />
           <Route path="/edituser/:id" element={<EditUserAdmin />} />
+=======
+          <Route path="/allbookings" element={<ViewAllBooking />} />
+          <Route path="/mybookings/:id" element={<ViewMyBookings />} />
+          <Route path="/addbooking" element={<BookingCreate />} />
+          <Route path="/editbooking/:id" element={<BookingUpadate />} />
+>>>>>>> 81eceb64478d3f5c91f687be60cb2b6c8191981a
         </Routes>
       </Router>
+      <Footer />
     </div>
   );
 }
