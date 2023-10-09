@@ -26,6 +26,29 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+  <script>
+
+    function reg() {
+      const signUpButton = document.getElementById('signUp');
+
+      const container = document.getElementById('container');
+
+      signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+      });
+    }
+    function log() {
+      const signInButton = document.getElementById('signIn');
+      const container = document.getElementById('container');
+
+      signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+      });
+
+    }
+
+
+  </script>
   <title>Train Go</title>
 </head>
 

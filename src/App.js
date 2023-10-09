@@ -8,6 +8,7 @@ import TrainsList from "./Pages/Train Management/TrainsList";
 import AddTrain from "./Pages/Train Management/AddTrain";
 import AllTrains from "./Pages/Train Management/AllTrains";
 import EditTrain from "./Pages/Train Management/EditTrain";
+import RegisterUser from "./Pages/Admin/Login";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/addtrain" element={<AddTrain />} />
           <Route path="/alltrains" element={<AllTrains />} />
           <Route path="/edittrain/:id" element={<EditTrain />} />
+          <Route path="/admin" element={<RegisterUser />} />
         </Routes>
       </Router>
     </div>
