@@ -22,6 +22,7 @@ import Footer from "./Component/Footer/Footer";
 import AllAgents from "./Pages/Admin/AllAgents";
 import ProfileEditAdmin from "./Pages/Admin/Profile";
 import Reset from "./Pages/Admin/RestPass";
+import AdminHome from "./Pages/Admin/Dashboard";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/allagents" element={<AllAgents />} />
           <Route path="/adminProfile" element={<ProfileEditAdmin />} />
           <Route path="/reset" element={<Reset />} />
+          <Route path="/dashboard" element={<AdminHome />} />
 
         </Routes>
       </Router>

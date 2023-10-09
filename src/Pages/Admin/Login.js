@@ -7,11 +7,11 @@ export default function RegisterUser({ }) {
 
 
 
-    const [Name, setName] = useState("");
-    const [Email, setEmail] = useState("");
-    const [Num, setNum] = useState("");
-    const [Password, setPassword] = useState("");
-    const [role, setRole] = useState(''); // Initialize the role state
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobileNumber, setNum] = useState("");
+    const [password, setPassword] = useState("");
+    const [userRole, setRole] = useState(''); // Initialize the role state
 
     const [error, setError] = useState(false);
     const [loding, setLoding] = useState(false);
@@ -36,16 +36,19 @@ export default function RegisterUser({ }) {
 
         const NewReg = {
 
-            Name,
-            Email,
-            Password,
-            Num
+            name,
+            email,
+            mobileNumber,
+            password,
+            userRole
 
         }
         console.log(NewReg);
 
-        axios.post("http://localhost:8070/Register/add", NewReg).then(() => {
-            alert("success");
+        axios.post("http://localhost:5068/api/Admin", NewReg).then(() => {
+            
+            alert("Registration Successful");
+            window.location.href = "/Dashboard";
         }).catch((err) => {
             alert(err);
         })
@@ -81,7 +84,7 @@ export default function RegisterUser({ }) {
 
                 "https://trabackend1223.herokuapp.com/Register/login",
                 {
-                    Email, Password
+                    email, password
                 },
                 config
             );
@@ -104,7 +107,7 @@ export default function RegisterUser({ }) {
 
 
     return (
-        <div>	
+        <div>
             <div className="logincss ">
 
                 <div className="info">
@@ -118,25 +121,25 @@ export default function RegisterUser({ }) {
                                 <input className="inputabc" type="number" placeholder="Mobile" id="Number" onChange={(e) => { setNum(e.target.value); }} required />
                                 <input className="inputabc" type="password" placeholder="Password" id="Password" onChange={(e) => { setPassword(e.target.value); }} required />
                                 <div className="role-selection">
-        <label>
-          <input
-            type="radio"
-            value="Back Office"
-            onChange={(e) => setRole(e.target.value)}
-            checked={role === 'Back Office'}
-          />
-          Back Office
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="Travel Agent"
-            onChange={(e) => setRole(e.target.value)}
-            checked={role === 'Travel Agent'}
-          />
-          Travel Agent
-        </label>
-      </div>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="Back Office"
+                                            onChange={(e) => setRole(e.target.value)}
+                                            checked={userRole === 'Back Office'}
+                                        />
+                                        Back Office
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="Travel Agent"
+                                            onChange={(e) => setRole(e.target.value)}
+                                            checked={userRole === 'Travel Agent'}
+                                        />
+                                        Travel Agent
+                                    </label>
+                                </div>
                                 <button className="button12 " type="submit">Sign Up</button>
                             </form>
 
@@ -147,8 +150,8 @@ export default function RegisterUser({ }) {
                                 <h1 className="h111">Sign in</h1>
 
 
-                                <input className="inputabc" type="text" placeholder="Email" id='logemail' value={Email} onChange={(e) => { setEmail(e.target.value); }} />
-                                <input className="inputabc" type="password" placeholder="Password" id='logpass' value={Password} onChange={(e) => { setPassword(e.target.value); }} />
+                                <input className="inputabc" type="text" placeholder="Email" id='logemail' value={email} onChange={(e) => { setEmail(e.target.value); }} />
+                                <input className="inputabc" type="password" placeholder="Password" id='logpass' value={password} onChange={(e) => { setPassword(e.target.value); }} />
                                 <a href="/reset" className="a123" >Forgot your password?</a>
                                 <button className="button12  ">Sign In</button>
                             </form>
@@ -174,7 +177,7 @@ export default function RegisterUser({ }) {
             </div>
 
 
-          
+
         </div>
     )
 
