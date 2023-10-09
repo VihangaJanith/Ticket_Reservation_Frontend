@@ -21,7 +21,6 @@ const Navbar = () => {
     const ismybookings = str.includes("/mybookings");
     const islogin = str.includes("/login");
     const isAboutUs = str.includes("/aboutus");
-    const isContactUs = str.includes("/contactUs");
 
     return (
         <nav className={`navbar navbar-expand-lg navbar-light ${isSticky ? "stickynav" : "normalnav"}`} >
@@ -55,9 +54,6 @@ const Navbar = () => {
 
                         <li className="nav-item">
                             <a className={`nav-link nav-link-a-text me-3 ${isAboutUs ? 'active' : ''}`} href="/aboutus" >About Us</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className={`nav-link nav-link-a-text me-3 ${isContactUs ? 'active' : ''}`} href="/contactUs" >Contact Us</a>
                         </li>
 
                         <li className="nav-item">

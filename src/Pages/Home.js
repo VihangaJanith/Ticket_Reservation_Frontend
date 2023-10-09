@@ -146,7 +146,7 @@ function Home() {
         Propular Reservations
       </h1>
 
-      <div style={{ marginInlineStart: '5%', marginInlineEnd: '5%' }}>
+      <div style={{ marginInlineStart: '5%', marginInlineEnd: '5%', fontSize: "20px" }} >
         <Carousel className="avac" interval={null} indicators={false} accessKey="">
           {groupedEvents.map((events, idx) => (
             <Carousel.Item key={idx}>
@@ -201,7 +201,7 @@ function Home() {
       </div>
 
       {/* Services */}
-      <section className="services-container mt-5" id="serviceContaint">
+      <section className="services-container mt-5" id="serviceContaint" style={{ fontSize: "20px" }}>
         <div className="text-center">
           <h5 className="brand-color">OUR SERVICES</h5>
           <h2>Services We Provide</h2>
@@ -220,10 +220,29 @@ function Home() {
         </div>
       </section>
 
+      <br />
+      {/* terms and conditions */}
+      <h1 class="text-center mt-2" style={{ color: "#000099", fontFamily: "Times New Roman, Times, serif" }}>
+        Terms and Conditions
+      </h1>
+
+      <ul class=" container" style={{ fontSize: "20px" }}>
+        <li>If you wish to cancel the journey, you have to visit the nearest Railway station where the mTicketing service is available together with reservation tickets issued to you and it is a mandatory requirement to provide your NIC/passport to the counter for verification purpose.</li>
+        <li>All tickets issued through the Service are the property of Sri Lanka Railways. Tickets are non-transferable and should be handed over to the destination station before leaving the station after the journey. Sri Lanka Railways officers have the authority to request and check the tickets at any given moment</li>
+        <li>Passengers must provide the booking reference number along with their NIC or passport in person at the Station Counter and ticket will not be issued to any third party.</li>
+        <li>Travelling on any other trains by using these types of tickets are strictly prohibited. An ordinary travelling ticket should be purchased for travelling to a transits station to catch a reserved train.</li>
+        <li>A reference number along with ticket details will be sent via email to commuters who make the reservation via website and/or mobile app.</li>
+        <li>Passengers are advised to be present at the station at least 15 minutes prior to the departure time of the train.</li>
+        <li>Each adult passenger will be allowed, to bring on board their luggage, free of charge as per SLR’s general regulation. (Refer to general commercial rules set out below. For any enquiries meet a railway office.) The commuters will have to store luggage in the Luggage cabin by themselves. Luggage/baggage stored in the Luggage cabin is subject to availability. SLR would not provide additional space to accommodate their luggage.</li>
+      </ul>
+      <br />
+
       {/* About Us */}
-      <section id="contact">
+      <section id="contact" style={{ fontSize: "20px" }}>
         <div className="container mt-3 contactContent">
-          <h1 className="text-center">Contact Us</h1>
+          <h1 class="text-center mt-2" style={{ color: "#000099", fontFamily: "Times New Roman, Times, serif" }}>
+            Contact Us
+          </h1>
 
           <div className="row mt-4">
             <div className="col-lg-6">
