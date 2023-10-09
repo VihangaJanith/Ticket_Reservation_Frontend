@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Signup = () => {
+const EditAccount = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -9,6 +9,18 @@ const Signup = () => {
     confirmPassword: "",
     nic: "",
   });
+
+  useEffect(() => {
+    const id = localStorage.getItem("token");
+    axios
+      .get(`http://localhost:5068/api/User/${id}   `)
+      .then((response) => {
+        setFormData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching train data:", error);
+      });
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -19,32 +31,21 @@ const Signup = () => {
     event.preventDefault();
 
     try {
-      if (formData.password !== formData.confirmPassword) {
-        alert("Passwords do not match");
-        return;
-      }
-      // Send a POST request to your server on localhost:5000
-      const response = await axios.post(
-        "http://localhost:5068/api/User",
-        formData
-      );
-
-      // Handle the response as needed
-      console.log("Registration successful:", response.data);
-      alert("Registration successful");
-
-      // You can also redirect the user to a different page here if needed.
+      const id = localStorage.getItem("token");
+      await axios.put(`http://localhost:5068/api/User/${id}`, formData);
+      alert("Account updated successfully!"); // You can display a success message or redirect to another page
+      window.location.href = "/profile";
     } catch (error) {
-      // Handle errors, such as displaying an error message to the user
-      console.error("Registration failed:", error);
+      console.error("Error updating account:", error);
+      alert("An error occurred while updating your account. Please try again."); // You can display an error message to the user
     }
   };
 
   return (
     <>
       <header className="bg-primary text-white text-center py-5 mb-5">
-        <h1>Sign Up</h1>
-        <p>Signup to reserve train tickets</p>
+        <h1>Edit Account</h1>
+        <p>Edit Your User Account</p>
       </header>
 
       <div className="container">
@@ -55,7 +56,7 @@ const Signup = () => {
               //   src="https://knowledgemission.kerala.gov.in/img/official-login.jpg"
               //   src="https://t3.ftcdn.net/jpg/03/39/70/90/360_F_339709048_ZITR4wrVsOXCKdjHncdtabSNWpIhiaR7.jpg"
               className="img-fluid"
-              alt="signup"
+              alt="EditAccount"
             />
           </div>
 
@@ -119,7 +120,7 @@ const Signup = () => {
               </div>
               <div className="mb-3">
                 <label htmlFor="confirmPassword" className="form-label">
-                  Confirm Password
+                  Give Password Again To Submit
                 </label>
                 <input
                   type="password"
@@ -142,4 +143,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default EditAccount;

@@ -1,8 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "",
+    nic: "",
     password: "",
   });
 
@@ -11,10 +12,30 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // You can add registration logic here
-    console.log(formData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5068/api/User/login",
+        formData
+      );
+
+      if (response.status === 200) {
+        // Successful login, you can redirect the user or perform any other action here.
+        console.log("Login successful!");
+        console.log(response.data);
+        localStorage.setItem("token", response.data.id);
+        localStorage.setItem("name", response.data.username);
+        window.location.href = "/";
+      } else {
+        // Handle unsuccessful login, show an error message, etc.
+        console.log("Login failed.");
+      }
+    } catch (error) {
+      // Handle any network errors or other exceptions here.
+      console.error("An error occurred:", error);
+    }
   };
 
   return (
@@ -41,14 +62,14 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
-                  Email
+                  NIC
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                  id="nic"
+                  name="nic"
+                  value={formData.nic}
                   onChange={handleChange}
                   required
                 />
