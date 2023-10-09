@@ -45,7 +45,7 @@ const Navbar = () => {
                         </li>
 
                         <li className="nav-item">
-                            <a href='/alltrains' className={`nav-link me-3 nav-link-a-text ${isalltrains ? 'active' : ''}`}>Trains</a>
+                            <a href='/trainsList' className={`nav-link me-3 nav-link-a-text ${isalltrains ? 'active' : ''}`}>Trains</a>
                         </li>
 
                         <li className="nav-item">

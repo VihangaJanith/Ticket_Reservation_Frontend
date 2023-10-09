@@ -237,6 +237,118 @@ function Home() {
       </ul>
       <br />
 
+      {/* Client says */}
+
+      <section class="client_section layout_padding">
+        <div class="container">
+
+          <h1 class="text-center mt-2" style={{ color: "#000099", fontFamily: "Times New Roman, Times, serif" }}>
+            What Our Clients Say
+          </h1>
+
+        </div>
+        <div class="container px-0" style={{ fontSize: "18px" }}>
+          <div id="customCarousel2" class="carousel  carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="box">
+                  <div class="client_info">
+                    <div class="client_name">
+                      <h5>
+                        Vihanga Janith
+                      </h5>
+                      <h6>
+                        Software Engineer
+                      </h6>
+                    </div>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </div>
+                  <p>
+                    This is the best place to book train tickets. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket.
+                  </p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="box">
+                  <div class="client_info">
+                    <div class="client_name">
+                      <h5>
+                        Amanda Nethmini
+                      </h5>
+                      <h6>
+                        Technical Lead
+                      </h6>
+                    </div>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </div>
+                  <p>
+                    Train Go is the best place to book train tickets. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket.
+                  </p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="box">
+                  <div class="client_info">
+                    <div class="client_name">
+                      <h5>
+                        Kavindu Perera
+                      </h5>
+                      <h6>
+                        IT Head
+                      </h6>
+                    </div>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </div>
+                  <p>
+                    Sri Lanka Railways is the best place to book train tickets. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their  this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket.
+                  </p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="box">
+                  <div class="client_info">
+                    <div class="client_name">
+                      <h5>
+                        Kamindu Gayantha
+                      </h5>
+                      <h6>
+                        IT Manager
+                      </h6>
+                    </div>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </div>
+                  <p>
+                    Reserving train tickets is very easy with Train Go. I booked a train ticket from and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket. I booked a train ticket from Blue Sky Lands and I am very happy
+                    with their service. I recommend this to anyone who is looking for a train ticket.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel_btn-box">
+              <a class="carousel-control-prev" href="#customCarousel2" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#customCarousel2" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <br />
       {/* About Us */}
       <section id="contact" style={{ fontSize: "20px" }}>
         <div className="container mt-3 contactContent">
@@ -274,7 +386,7 @@ function Home() {
                 </div>
 
                 {/* Submit button */}
-                <button type="submit" className="btn btn-success mt-3" style={{ width: '100%' }}>Send Mail</button>
+                <button type="submit" className="btn btn-primary mt-3" style={{ width: '100%' }}>Send Mail</button>
               </form>
             </div>
 
