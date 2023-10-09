@@ -48,7 +48,9 @@ function Home() {
               choice for both local commuters and tourists exploring the
               picturesque landscapes of Sri Lanka
             </p>
-            <button className="btn btn-primary w-50 h-30">Book Now</button>
+            <a className="btn btn-primary w-50 h-30" href="/trainsList">
+              Book Now
+            </a>
           </div>
           <div className="col-md-6">
             <img
