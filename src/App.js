@@ -19,6 +19,7 @@ import ViewMyBookings from "./Pages/Booking/ViewMyBookings";
 import BookingCreate from "./Pages/Booking/BookingCreate";
 import BookingUpadate from "./Pages/Booking/BookingUpadate";
 import Footer from "./Component/Footer/Footer";
+import AllAgents from "./Pages/Admin/AllAgents";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/mybookings/:id" element={<ViewMyBookings />} />
           <Route path="/addbooking" element={<BookingCreate />} />
           <Route path="/editbooking/:id" element={<BookingUpadate />} />
+          <Route path="/allagents" element={<AllAgents />} />
         </Routes>
       </Router>
       <Footer />
