@@ -4,6 +4,9 @@ import './Navbar.css';
 const Navbar = () => {
     const [isSticky, setSticky] = useState(false)
     const [isLogin, setLogin] = useState(false)
+    const [name, setName] = React.useState("");
+    const [admin, setAdminName] = React.useState("");
+
     useEffect(() => {
         window.addEventListener("scroll", () => {
             if (window.scrollY > 99) {
@@ -18,6 +21,7 @@ const Navbar = () => {
         const myData = localStorage.getItem('myData');
         const myDataObject = JSON.parse(myData);
         const islogin = myDataObject;
+        setAdminName(myDataObject?.name)
         console.log(islogin)
         if (islogin == null) {
             setLogin(true)
@@ -25,12 +29,25 @@ const Navbar = () => {
         else {
             setLogin(false)
         }
-    }, [])
+    }, [isLogin])
 
     const handleLogout = () => {
         localStorage.removeItem("myData");
     };
 
+    useEffect(() => {
+        const name = localStorage.getItem("name");
+
+        if (name !== null || name !== undefined) {
+            setName(name);
+        }
+    }, [name]);
+
+    const handleuserLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("name");
+        window.location.href = "/";
+    };
 
     const str = window.location.href;
 
@@ -75,75 +92,112 @@ const Navbar = () => {
                         </li>
 
                         <li className="nav-item dropdown" onClick={() => setIsDownloadDropdownOpen(!isDownloadDropdownOpen)}>
-                        {(isLogin ? (
-                            <a
-                                className={` nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
-                                type="button"
-                                role="button"
-                                id="downLoadDropdown"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded={isDownloadDropdownOpen}
-                            >
-                            
-                                Login
-                            </a>
-                        ):(<a
-                            className={` nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
-                            type="button"
-                            role="button"
-                            id="downLoadDropdown"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded={isDownloadDropdownOpen}
-                        >
-                        
-                            Profile
-                        </a>
-                        ))}
-                            <ul className={`dropdown-menu${isDownloadDropdownOpen ? ' show' : ''}`} aria-labelledby="downLoadDropdown">
-                                {(isLogin ? (
-                                <div>
-                                <li>
+                            {!isLogin ? (
+                                <a
+                                    className={`nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
+                                    type="button"
+                                    role="button"
+                                    id="downLoadDropdown"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded={isDownloadDropdownOpen}
+                                >
+                                    {admin}
+                                </a>
+                            ) : (
+                                name ? (
                                     <a
-                                        className={`dropdown-item `}
-                                        href="/admin"
+                                        className={`nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
+                                        type="button"
+                                        role="button"
+                                        id="downLoadDropdown"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded={isDownloadDropdownOpen}
                                     >
-                                        Agent Login
+                                        {name}
                                     </a>
-                                </li>
-                                <li>
+                                ) : (
                                     <a
-                                        className={`dropdown-item `}
-                                        href="/login"
+                                        className={`nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
+                                        type="button"
+                                        role="button"
+                                        id="downLoadDropdown"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded={isDownloadDropdownOpen}
                                     >
-                                        User Login
+                                        Login
                                     </a>
-                                </li>
-                                </div>
-                                ):(
-                                    
-                                    <div>
-                                    <li>
-                                        <a
-                                            className={`dropdown-item `}
-                                            href="/adminProfile"
-                                        >
-                                            Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className={`dropdown-item `}
-                                            href="/login"
-                                            onClick={handleLogout}
-                                        >
-                                            LogOut
-                                        </a>
-                                    </li>
-                                    </div>
                                 )
-                                )}
+                            )}
+
+
+
+                            <ul className={`dropdown-menu${isDownloadDropdownOpen ? ' show' : ''}`} aria-labelledby="downLoadDropdown">
+                                {(!isLogin ? (
+                                    <div>
+                                        <li>
+                                            <a
+                                                className={`dropdown-item `}
+                                                href="/adminProfile"
+                                            >
+                                                Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                className={`dropdown-item `}
+                                                href="/login"
+                                                onClick={handleLogout}
+                                            >
+                                                LogOut
+                                            </a>
+                                        </li>
+                                    </div>
+                                ) : (
+                                    name ? (
+                                        <div>
+                                            <li>
+                                                <a
+                                                    className={`dropdown-item `}
+                                                    href="/profile"
+                                                >
+                                                    Profile
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    className={`dropdown-item `}
+                                                    href="/login"
+                                                    onClick={handleuserLogout}
+                                                >
+                                                    LogOut
+                                                </a>
+                                            </li>
+                                        </div>
+                                    )
+                                        : (
+                                            <div>
+                                                <li>
+                                                    <a
+                                                        className={`dropdown-item `}
+                                                        href="/admin"
+                                                    >
+                                                        Agent Login
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        className={`dropdown-item `}
+                                                        href="/login"
+                                                    >
+                                                        User Login
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        )
+                                ))}
 
                             </ul>
                         </li>

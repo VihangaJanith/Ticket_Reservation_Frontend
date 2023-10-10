@@ -124,7 +124,7 @@ function BookingCreate() {
                                 </div>
 
                                 <div class="col-md-7 col-sm-12 p-0 box">
-                                    <div class="card rounded-0 border-0 card2" id="paypage">
+                                    <div class="card rounded-0 border-0 card2" id="paypage" style={{ marginLeft: '5%' }}>
                                         <div class="form-card">
 
                                             <div className="tabcard">
@@ -177,8 +177,7 @@ function BookingCreate() {
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-6">
-
-                                                                    <a class="btn btn-info placeicon" id="payment-tab" data-toggle="pill" href="#payment" role="tab" aria-controls="payment" aria-selected="false">NEXT &nbsp; &#xf178;</a>
+                                                                    <a class="btn btn-info placeicon w-100" id="payment-tab" data-toggle="pill" href="#payment" role="tab" aria-controls="payment" aria-selected="false">NEXT &nbsp; &#xf178;</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -212,7 +211,10 @@ function BookingCreate() {
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-info placeicon" />
+
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-info placeicon" style={{ width: '100%' }} />
                                                                 </div>
                                                             </div>
                                                         </div>
