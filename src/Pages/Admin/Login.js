@@ -136,16 +136,16 @@ export default function RegisterUser({ }) {
                                             type="radio"
                                             value="1"
                                             onChange={(e) => setRole(e.target.value)}
-                                            checked={userRole === '1'}
+                                            checked={userRole === '0'}
                                         />
                                         Back Office
                                     </label>
                                     <label>
                                         <input
                                             type="radio"
-                                            value="0"
+                                            value="1"
                                             onChange={(e) => setRole(e.target.value)}
-                                            checked={userRole === '0'}
+                                            checked={userRole === '1'}
                                         />
                                         Travel Agent
                                     </label>
