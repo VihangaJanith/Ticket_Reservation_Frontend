@@ -6,14 +6,17 @@ function AdminHome() {
     const [userType1, setUserType] = useState("");
 
     useEffect (() => {
-        const userType = localStorage.getItem('userType');
-        setUserType(userType);
-        if (userType == '1') {
+        const userType = localStorage.getItem('myData');
+        const userTypeObject = JSON.parse(userType);
+        const userName = userTypeObject.userRole;
+        console.log(userName)
+        setUserType(userName);
+        if (userName == '1') {
 
-            setName('Backoffice Agent')
+            setName('Traveler Agent')
         }
         else {
-            setName('Traveler Agent')
+            setName('Backoffice Agent')
         }
     }, [])
 

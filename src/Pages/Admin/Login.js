@@ -31,30 +31,29 @@ export default function RegisterUser({ }) {
 
 
     function sendData() {
-
-
-
         const NewReg = {
-
             name,
             email,
             mobileNumber,
             password,
             userRole
-
-        }
+        };
         console.log(NewReg);
+        axios.post("http://localhost:5068/api/Admin", NewReg)
+            .then((res) => {
+                localStorage.setItem('myData', JSON.stringify(res.data));
+                alert("Registration Successful");
+                window.location.href = "/Dashboard";
+            })
+            .catch((err) => {
+                alert(err);
+            });
 
-        axios.post("http://localhost:5068/api/Admin", NewReg).then(() => {
-            
-            alert("Registration Successful");
-            window.location.href = "/Dashboard";
-        }).catch((err) => {
-            alert(err);
-        })
+            alert("Registration Successful")
 
 
     }
+    
 
     const getData = async (e) => {
 
@@ -78,30 +77,41 @@ export default function RegisterUser({ }) {
                 headers: {
                     "Content-type": "application/json"
                 }
-            }
+            };
             setLoding(true);
-            const { data } = await axios.post(
-
-                "https://trabackend1223.herokuapp.com/Register/login",
+        
+            const response = await axios.post(
+                "http://localhost:5068/api/Admin/login",
                 {
-                    email, password
+                    email,
+                    password
                 },
                 config
             );
-            console.log(data)
-            localStorage.setItem("userInfo", JSON.stringify(data));
+        
+            if (response.status === 200) {
+                // Successful login
+                const data = response.data;
+                console.log(data);
+                localStorage.setItem("myData", JSON.stringify(data));
+                alert("Successfully logged in");
+                window.location.href = "/Dashboard";
 
-            // history.push('/profile');
-
+            } else {
+                // Wrong password or other error
+                alert("Wrong password or other error occurred");
+            }
+        
             setLoding(false);
-
-            console.log("err")
-
-
         } catch (error) {
-
-            setError(error.response.data.message);
+            if (error.response && error.response.status === 400) {
+                alert("Wrong password");
+            } else {
+                // Handle other errors
+                setError(error.response?.data?.message || "An error occurred");
+            }
         }
+        
 
     }
 
@@ -124,18 +134,18 @@ export default function RegisterUser({ }) {
                                     <label>
                                         <input
                                             type="radio"
-                                            value="Back Office"
+                                            value="1"
                                             onChange={(e) => setRole(e.target.value)}
-                                            checked={userRole === 'Back Office'}
+                                            checked={userRole === '1'}
                                         />
                                         Back Office
                                     </label>
                                     <label>
                                         <input
                                             type="radio"
-                                            value="Travel Agent"
+                                            value="0"
                                             onChange={(e) => setRole(e.target.value)}
-                                            checked={userRole === 'Travel Agent'}
+                                            checked={userRole === '0'}
                                         />
                                         Travel Agent
                                     </label>

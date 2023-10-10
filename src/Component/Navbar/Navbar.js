@@ -3,7 +3,7 @@ import './Navbar.css';
 
 const Navbar = () => {
     const [isSticky, setSticky] = useState(false)
-
+    const [isLogin, setLogin] = useState(false)
     useEffect(() => {
         window.addEventListener("scroll", () => {
             if (window.scrollY > 99) {
@@ -13,6 +13,24 @@ const Navbar = () => {
             }
         })
     }, [])
+
+    useEffect(() => {
+        const myData = localStorage.getItem('myData');
+        const myDataObject = JSON.parse(myData);
+        const islogin = myDataObject;
+        console.log(islogin)
+        if (islogin == null) {
+            setLogin(true)
+        }
+        else {
+            setLogin(false)
+        }
+    }, [])
+
+    const handleLogout = () => {
+        localStorage.removeItem("myData");
+    };
+
 
     const str = window.location.href;
 
@@ -57,6 +75,7 @@ const Navbar = () => {
                         </li>
 
                         <li className="nav-item dropdown" onClick={() => setIsDownloadDropdownOpen(!isDownloadDropdownOpen)}>
+                        {(isLogin ? (
                             <a
                                 className={` nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
                                 type="button"
@@ -66,13 +85,29 @@ const Navbar = () => {
                                 aria-haspopup="true"
                                 aria-expanded={isDownloadDropdownOpen}
                             >
+                            
                                 Login
                             </a>
+                        ):(<a
+                            className={` nav-link nav-link-a-text me-3 dropdown-toggle ${islogin ? 'active' : ''}`}
+                            type="button"
+                            role="button"
+                            id="downLoadDropdown"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded={isDownloadDropdownOpen}
+                        >
+                        
+                            Profile
+                        </a>
+                        ))}
                             <ul className={`dropdown-menu${isDownloadDropdownOpen ? ' show' : ''}`} aria-labelledby="downLoadDropdown">
+                                {(isLogin ? (
+                                <div>
                                 <li>
                                     <a
                                         className={`dropdown-item `}
-                                        href="/login"
+                                        href="/admin"
                                     >
                                         Agent Login
                                     </a>
@@ -85,6 +120,31 @@ const Navbar = () => {
                                         User Login
                                     </a>
                                 </li>
+                                </div>
+                                ):(
+                                    
+                                    <div>
+                                    <li>
+                                        <a
+                                            className={`dropdown-item `}
+                                            href="/adminProfile"
+                                        >
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            className={`dropdown-item `}
+                                            href="/login"
+                                            onClick={handleLogout}
+                                        >
+                                            LogOut
+                                        </a>
+                                    </li>
+                                    </div>
+                                )
+                                )}
+
                             </ul>
                         </li>
                     </ul>
