@@ -2,8 +2,8 @@
     height: 100%;
 }
 
-.bookingcss body {
-    background-color: #000000;
+.bookingcss {
+    background-color: #e3e3e390;
 }
 
 /*Card containing 2 cards*/
@@ -146,4 +146,47 @@
 .bookingcss .fit-image {
     width: 100%;
     object-fit: cover;
+}
+
+
+.tabcard body {
+    background-color: #bcd9f5;
+}
+
+/* nav */
+.tabcard .card {
+    max-width: 25rem;
+    padding: 0;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.tabcard a.active {
+    border-bottom: 2px solid #55c57a;
+}
+
+.tabcard .nav-link {
+    color: rgb(110, 110, 110);
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.tabcard .nav-link:hover {
+    color: #55c57a;
+}
+
+.tabcard .nav-pills .nav-link.active {
+    color: black;
+    background-color: white;
+    border-radius: 0.5rem 0.5rem 0 0;
+    font-weight: 600;
+}
+
+.tabcard .tab-content {
+    padding-bottom: 1.3rem;
+}
+
+.tabcard .form-control {
+    background-color: rgb(241, 243, 247);
+    border: none;
 }
