@@ -95,7 +95,7 @@ function BookingCreate() {
                                         <hr class="text-center mb-4" />
                                         <h4 style={{ color: "hsl(0,0%,0%,0.6)" }}>{trainName}</h4>
                                         <div >
-                                            <div class="col-12 "><img class="img-fluid" src={`${img}`} style={{ height: "200px", width: "100%" }} /></div>
+                                            <div class="col-12 "><img class="img-fluid" src={`${img}`} style={{ height: "200px", width: "100%", objectFit: 'cover' }} /></div>
 
                                         </div>
 
@@ -152,21 +152,27 @@ function BookingCreate() {
                                                             <div class="row">
                                                                 <div class="col-8 col-md-6">
                                                                     <label class="pay">Book Date</label>
-                                                                    <input type="date" name="cardno" id="cr_no" placeholder="From Location" minlength="19" maxlength="19" />
+                                                                    <input type="date" name="cardno" id="cr_no" />
                                                                 </div>
                                                                 <div class="col-4 col-md-6">
-                                                                    <label class="pay">Number of Seats</label>
-                                                                    <input type="text" name="cvcpwd" placeholder="Number of Seats" class="placeicon" minlength="3" maxlength="3" />
+                                                                    <label class="pay">Number of Seats</label><br />
+                                                                    <select name="cvcpwd" class="placeicon" style={{ width: '100%', height: '43px' }}>
+                                                                        <option value="1">1 Seat</option>
+                                                                        <option value="2">2 Seats</option>
+                                                                        <option value="3">3 Seats</option>
+                                                                        <option value="4">4 Seats</option>
+                                                                    </select>
                                                                 </div>
+
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-8 col-md-6">
                                                                     <label class="pay">From Location</label>
-                                                                    <input type="text" name="cardno" id="cr_no" placeholder="From Location" minlength="19" maxlength="19" />
+                                                                    <input type="text" name="cardno" id="cr_no" placeholder="From Location" />
                                                                 </div>
                                                                 <div class="col-4 col-md-6">
                                                                     <label class="pay">To Location</label>
-                                                                    <input type="text" name="cvcpwd" placeholder="To Location" class="placeicon" minlength="3" maxlength="3" />
+                                                                    <input type="text" name="cvcpwd" placeholder="To Location" class="placeicon" />
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -189,7 +195,7 @@ function BookingCreate() {
                                                             <div class="row">
                                                                 <div class="col-8 col-md-6">
                                                                     <label class="pay">Card Number</label>
-                                                                    <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19" />
+                                                                    <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="16" maxlength="16" />
                                                                 </div>
                                                                 <div class="col-4 col-md-6">
                                                                     <label class="pay">CVV</label>
