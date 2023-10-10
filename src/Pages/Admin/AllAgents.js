@@ -14,12 +14,11 @@ function AllAgents() {
  
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5068/api/User/${id}`);
+      await axios.delete(`http://localhost:5068/api/Admin/${id}`);
 
       alert("User Deleted Successfully");
-      localStorage.removeItem("token");
-      localStorage.removeItem("name");
-      window.location.href = "/AllUsers";
+  
+      window.location.href = "/allagents";
     } catch (error) {
       console.error("Error deleting user data:", error);
     }
