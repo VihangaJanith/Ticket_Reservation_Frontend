@@ -140,7 +140,7 @@ function AdminHome() {
                               type="submit"
                             >
                               <a
-                                href="/activities"
+                                href="/allagents"
                                 style={{
                                   textDecoration: "none",
                                   color: "black",
