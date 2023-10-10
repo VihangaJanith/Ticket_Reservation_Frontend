@@ -5,38 +5,44 @@ import axios from "axios";
 
 const ProfileEditAdmin = () => {
 
-    const id = '60f0c0b0c8b4c30015b9b0d0'
-    const [Registers, addPost] = useState({
+    const [name , setName] = useState("");
+    const [email , setEmail] = useState("");
+    const [mobileNumber , setNum] = useState("");
+    const [password , setPassword] = useState("");
+    const [userRole , setRole] = useState(''); // Initialize the role state
 
-        Name: "",
-        Email: "",
-        Password: "",
-        Num: ""
 
-    });
-    const { Name, Email, Password, Num } = Registers;
 
-    const onInputChange = e => {
-        // addPost({ ...Registers, [e.target.name]: e.target.value });
-    };
+    useEffect(() => {
 
-    const onSubmit = async e => {
-        // e.preventDefault();
-        // await axios.put(`https://travelmanagement.onrender.com/user/update/${id}`, Registers);
 
-        // // history.push("/user-account");
-        // alert("  Successful")
+        const userInfo = localStorage.getItem('myData');
+        const userInfoObject = JSON.parse(userInfo);
+        const userName = userInfoObject.name;
+        const userEmail = userInfoObject.email;
+        const userNum = userInfoObject.mobileNumber;
+        const userPassword = userInfoObject.password;
+        const userRole = userInfoObject.userRole;
+        console.log(userName)
+        console.log(userEmail)
+        console.log(userNum)
+        console.log(userRole)
+
+        setName(userName);
+        setEmail(userEmail);
+        setNum(userNum);
+        setPassword(userPassword);
+        setRole(userRole);
     }
+    , [])
 
-    const loadPackage = async () => {
-        const res = await axios.get
-            (`https://travelmanagement.onrender.com/user/details/${id}`)
-
-        addPost(res.data.BackendData)
+    const onInputChange = (e) => {
+        setName(e.target.value);
+        setEmail(e.target.value);
+        setNum(e.target.value);
+        setPassword(e.target.value);
+        setRole(e.target.value);
     }
-    // useEffect(() => {
-    //     loadPackage();
-    // }, []);
 
     return (
         <div>
@@ -59,45 +65,45 @@ const ProfileEditAdmin = () => {
                                                     <div class="m-b-25">
                                                         <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image" />
                                                     </div>
-                                                    <h6 class="f-w-600">{Name}</h6>
-                                                    <p>{Email}</p>
+                                                    <h6 class="f-w-600">{name}</h6>
+                                                    <p>{email}</p>
                                                    
                                                 </div>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="card-block">
                                                     <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Update Your Information</h6>
-                                                    <form onSubmit={e => onSubmit(e)} >
+                                                    <form >
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <p class="m-b-10 f-w-600">Name</p>
                                                            
-                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text" name="Name" value={Name} onChange={e => onInputChange(e)} />
+                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text" name="Name" value={name} onChange={e => onInputChange(e)} />
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <p class="m-b-10 f-w-600">Email</p>
-                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text"  />
+                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text" name="Name" value={email} onChange={e => onInputChange(e)} />
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <p class="m-b-10 f-w-600">Mobile Number</p>
-                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text"  name="Email" value={Email} onChange={e => onInputChange(e)} />
+                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text"  name="Email" value={email} onChange={e => onInputChange(e)} />
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <p class="m-b-10 f-w-600">User Type</p>
-                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text" name="Num" value={"Num"} onChange={e => onInputChange(e)} disabled />
+                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text" name="Num" value={mobileNumber} onChange={e => onInputChange(e)} disabled />
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <p class="m-b-10 f-w-600">Password</p>
-                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text"  Name="Password" value={Password} onChange={e => onInputChange(e)} />
+                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="password"  Name="Password" value={password} onChange={e => onInputChange(e)} />
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <p class="m-b-10 f-w-600">Confirm Password</p>
-                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="text"  />
+                                                            <input class="text-muted mb-4" style={{width:'150px'}} type="password"  Name="Password" value={password} onChange={e => onInputChange(e)} />
                                                         </div>
                                                     </div>
 
