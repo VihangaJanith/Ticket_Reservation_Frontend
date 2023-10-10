@@ -7,11 +7,11 @@ export default function RegisterUser({ }) {
 
 
 
-    const [Name, setName] = useState("");
-    const [Email, setEmail] = useState("");
-    const [Num, setNum] = useState("");
-    const [Password, setPassword] = useState("");
-    const [role, setRole] = useState(''); // Initialize the role state
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobileNumber, setNum] = useState("");
+    const [password, setPassword] = useState("");
+    const [userRole, setRole] = useState(''); // Initialize the role state
 
     const [error, setError] = useState(false);
     const [loding, setLoding] = useState(false);
@@ -31,27 +31,29 @@ export default function RegisterUser({ }) {
 
 
     function sendData() {
-
-
-
         const NewReg = {
-
-            Name,
-            Email,
-            Password,
-            Num
-
-        }
+            name,
+            email,
+            mobileNumber,
+            password,
+            userRole
+        };
         console.log(NewReg);
+        axios.post("http://localhost:5068/api/Admin", NewReg)
+            .then((res) => {
+                localStorage.setItem('myData', JSON.stringify(res.data));
+                alert("Registration Successful");
+                window.location.href = "/Dashboard";
+            })
+            .catch((err) => {
+                alert(err);
+            });
 
-        axios.post("http://localhost:8070/Register/add", NewReg).then(() => {
-            alert("success");
-        }).catch((err) => {
-            alert(err);
-        })
+            alert("Registration Successful")
 
 
     }
+    
 
     const getData = async (e) => {
 
@@ -75,36 +77,47 @@ export default function RegisterUser({ }) {
                 headers: {
                     "Content-type": "application/json"
                 }
-            }
+            };
             setLoding(true);
-            const { data } = await axios.post(
-
-                "https://trabackend1223.herokuapp.com/Register/login",
+        
+            const response = await axios.post(
+                "http://localhost:5068/api/Admin/login",
                 {
-                    Email, Password
+                    email,
+                    password
                 },
                 config
             );
-            console.log(data)
-            localStorage.setItem("userInfo", JSON.stringify(data));
+        
+            if (response.status === 200) {
+                // Successful login
+                const data = response.data;
+                console.log(data);
+                localStorage.setItem("myData", JSON.stringify(data));
+                alert("Successfully logged in");
+                window.location.href = "/Dashboard";
 
-            // history.push('/profile');
-
+            } else {
+                // Wrong password or other error
+                alert("Wrong password or other error occurred");
+            }
+        
             setLoding(false);
-
-            console.log("err")
-
-
         } catch (error) {
-
-            setError(error.response.data.message);
+            if (error.response && error.response.status === 400) {
+                alert("Wrong password");
+            } else {
+                // Handle other errors
+                setError(error.response?.data?.message || "An error occurred");
+            }
         }
+        
 
     }
 
 
     return (
-        <div>	
+        <div>
             <div className="logincss ">
 
                 <div className="info">
@@ -118,25 +131,25 @@ export default function RegisterUser({ }) {
                                 <input className="inputabc" type="number" placeholder="Mobile" id="Number" onChange={(e) => { setNum(e.target.value); }} required />
                                 <input className="inputabc" type="password" placeholder="Password" id="Password" onChange={(e) => { setPassword(e.target.value); }} required />
                                 <div className="role-selection">
-        <label>
-          <input
-            type="radio"
-            value="Back Office"
-            onChange={(e) => setRole(e.target.value)}
-            checked={role === 'Back Office'}
-          />
-          Back Office
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="Travel Agent"
-            onChange={(e) => setRole(e.target.value)}
-            checked={role === 'Travel Agent'}
-          />
-          Travel Agent
-        </label>
-      </div>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="1"
+                                            onChange={(e) => setRole(e.target.value)}
+                                            checked={userRole === '1'}
+                                        />
+                                        Back Office
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="0"
+                                            onChange={(e) => setRole(e.target.value)}
+                                            checked={userRole === '0'}
+                                        />
+                                        Travel Agent
+                                    </label>
+                                </div>
                                 <button className="button12 " type="submit">Sign Up</button>
                             </form>
 
@@ -147,8 +160,8 @@ export default function RegisterUser({ }) {
                                 <h1 className="h111">Sign in</h1>
 
 
-                                <input className="inputabc" type="text" placeholder="Email" id='logemail' value={Email} onChange={(e) => { setEmail(e.target.value); }} />
-                                <input className="inputabc" type="password" placeholder="Password" id='logpass' value={Password} onChange={(e) => { setPassword(e.target.value); }} />
+                                <input className="inputabc" type="text" placeholder="Email" id='logemail' value={email} onChange={(e) => { setEmail(e.target.value); }} />
+                                <input className="inputabc" type="password" placeholder="Password" id='logpass' value={password} onChange={(e) => { setPassword(e.target.value); }} />
                                 <a href="/reset" className="a123" >Forgot your password?</a>
                                 <button className="button12  ">Sign In</button>
                             </form>
@@ -174,7 +187,7 @@ export default function RegisterUser({ }) {
             </div>
 
 
-          
+
         </div>
     )
 

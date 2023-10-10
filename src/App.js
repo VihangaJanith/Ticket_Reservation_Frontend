@@ -22,6 +22,7 @@ import Footer from "./Component/Footer/Footer";
 import AllAgents from "./Pages/Admin/AllAgents";
 import ProfileEditAdmin from "./Pages/Admin/Profile";
 import Reset from "./Pages/Admin/RestPass";
+import AdminHome from "./Pages/Admin/Dashboard";
 import AboutUs from "./Pages/AboutUs";
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -50,6 +53,8 @@ function App() {
           <Route path="/allagents" element={<AllAgents />} />
           <Route path="/adminProfile" element={<ProfileEditAdmin />} />
           <Route path="/reset" element={<Reset />} />
+          <Route path="/dashboard" element={<AdminHome />} />
+
         </Routes>
       </Router>
       <Footer />
