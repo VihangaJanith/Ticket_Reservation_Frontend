@@ -1,12 +1,25 @@
 import axios from "axios";
-import React, { useState } from "react";
-import './Booking.css'
+import React, { useEffect, useState } from "react";
+import './Booking.css';
+
 function BookingCreate() {
+
+    const [trainName, settrainName] = useState("");
+    const [type, settype] = useState("");
+    const [img, setImg] = useState("");
+    const [tdate, setTdate] = useState("");
+    const [from, setfrom] = useState("");
+    const [to, setto] = useState("");
+    const [method, setMethod] = useState("");
+    const [name, setName] = useState("");
+    const [card, setCard] = useState("");
+    const [time, setTime] = useState("");
+    const [no, setNo] = useState("");
+    const [departureTime, setdepartureTime] = useState("");
+
 
     const [CusName, setCusName] = useState("");
     const [Bookdate, setBookdate] = useState("");
-    const [from, setFrom] = useState("");
-    const [to, setTo] = useState("");
     const [Traintime, setTraintime] = useState("");
 
     const handleSubmit = async (event) => {
@@ -42,8 +55,8 @@ function BookingCreate() {
             // Clear the form fields after successful submission
             setCusName("");
             setBookdate("");
-            setFrom("");
-            setTo("");
+            setto("");
+            setfrom("");
             setTraintime("");
         } catch (error) {
             // Handle any errors that occur during the POST request
@@ -51,96 +64,154 @@ function BookingCreate() {
         }
     };
 
+    useEffect(() => {
+        getTrainDetails();
+    }, [])
+
+    const getTrainDetails = async () => {
+        const id = window.location.pathname.split("/")[2];
+        const response = await axios.get(`http://localhost:5068/api/trains/${id}`);
+        console.log(response.data);
+        settrainName(response.data.trainName);
+        settype(response.data.type);
+        setImg(response.data.imageURL);
+        setfrom(response.data.from);
+        setto(response.data.to);
+        setdepartureTime(response.data.departureTime);
+    }
+
     return (
-        <div className="bookingcss">
+        <div className="bookingcss" >
 
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-11">
                         <div class="card card0 rounded-0">
                             <div class="row">
-                                <div class="col-md-5 d-md-block d-none p-0 box">
-                                    <div class="card rounded-0 border-0 card1" id="bill">
-                                        <h3 id="heading1">Payment Summary</h3>
-                                        <div class="row">
-                                            <div class="col-lg-7 col-8 mt-4 line pl-4">
-                                                <h2 class="bill-head">Electronics</h2>
-                                                <small class="bill-date">2017 Feb 10 at 10:30 PM</small>
-                                            </div>
-                                            <div class="col-lg-5 col-4 mt-4">
-                                                <h2 class="bill-head px-xl-5 px-lg-4">CAF</h2>
-                                            </div>
+                                <div class="col-md-5 d-md-block d-none box">
+                                    <div class="righta " style={{ backgroundColor: "white", border: "0px", paddingLeft: '10px' }}>
+
+                                        <div class="text-center mb-2"> <h2>Your Reservation Details</h2> </div>
+                                        <hr class="text-center mb-4" />
+                                        <h4 style={{ color: "hsl(0,0%,0%,0.6)" }}>{trainName}</h4>
+                                        <div >
+                                            <div class="col-12 "><img class="img-fluid" src={`${img}`} style={{ height: "200px", width: "100%" }} /></div>
+
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-7 col-8 mt-4 line pl-4">
-                                                <h2 class="bill-head">Food</h2>
-                                                <small class="bill-date">2017 Feb 25 at 11:30 PM</small>
-                                            </div>
-                                            <div class="col-lg-5 col-4 mt-4">
-                                                <h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
-                                            </div>
+
+                                        <hr />
+                                        <div class="row lower">
+                                            <div class="col text-lefta">Train Type</div>
+                                            <div class="col text-righta">{type}</div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-7 col-8 mt-4 line pl-4">
-                                                <h2 class="bill-head">Grocery</h2>
-                                                <small class="bill-date">2017 Mar 17 at 10:45 PM</small><br />
-                                                <small class="bill-date">2017 Mar 18 at 11:45 PM</small>
-                                            </div>
-                                            <div class="col-lg-5 col-4 mt-4">
-                                                <h2 class="bill-head px-xl-5 px-lg-4">LHR</h2>
-                                            </div>
+                                        <div class="row lower">
+                                            <div class="col text-lefta">From Location</div>
+                                            <div class="col text-righta">{from}</div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-7 col-8 mt-4 line pl-4">
-                                                <h2 class="bill-head">Accessories</h2>
-                                                <small class="bill-date">2017 Apr 13 at 05:30 PM</small>
-                                            </div>
-                                            <div class="col-lg-5 col-4 mt-4">
-                                                <h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
-                                            </div>
+                                        <div class="row lower">
+                                            <div class="col text-lefta">To Location</div>
+                                            <div class="col text-righta">{to}</div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12 red-bg">
-                                                <p class="bill-date" id="total-label">Total Price</p>
-                                                <h2 class="bill-head" id="total">$ 523.65</h2>
-                                                <small class="bill-date" id="total-label">Price includes all taxes</small>
-                                            </div>
+
+                                        <hr />
+                                        <div class="row lower">
+                                            <div class="col text-lefta"><b>Total Price</b></div>
+                                            <div class="col text-righta"><b>Rs. 1600.00</b></div>
                                         </div>
+                                        <br />
+                                        <p class="text-muted text-center">Apply Terms and Condition</p>
                                     </div>
                                 </div>
 
                                 <div class="col-md-7 col-sm-12 p-0 box">
                                     <div class="card rounded-0 border-0 card2" id="paypage">
                                         <div class="form-card">
-                                            <h2 id="heading2" class="text-danger">Payment Method</h2>
-                                            <div class="radio-group">
-                                                <div class='radio' data-value="credit"><img src="https://i.imgur.com/28akQFX.jpg" width="200px" height="60px" /></div>
-                                                <div class='radio' data-value="paypal"><img src="https://i.imgur.com/5QFsx7K.jpg" width="200px" height="60px" /></div>
-                                                <br />
-                                            </div>
-                                            <label class="pay">Name on Card</label>
-                                            <input type="text" name="holdername" placeholder="John Smith" />
-                                            <div class="row">
-                                                <div class="col-8 col-md-6">
-                                                    <label class="pay">Card Number</label>
-                                                    <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19" />
-                                                </div>
-                                                <div class="col-4 col-md-6">
-                                                    <label class="pay">CVV</label>
-                                                    <input type="password" name="cvcpwd" placeholder="&#9679;&#9679;&#9679;" class="placeicon" minlength="3" maxlength="3" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="pay">Expiration Date</label>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="text" name="exp" id="exp" placeholder="MM/YY" minlength="5" maxlength="5" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-info placeicon" />
+
+                                            <div className="tabcard">
+                                                <div class="">
+
+                                                    <ul class="nav nav-pills mb-3 shadow-sm" id="pills-tab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="bookingDetails-tab" data-toggle="pill" href="#bookingDetails" role="tab" aria-controls="bookingDetails" aria-selected="true">Booking Details</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="payment-tab" data-toggle="pill" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment Details</a>
+                                                        </li>
+                                                    </ul>
+
+
+                                                    <div class="tab-content" id="pills-tabContent p-3">
+
+                                                        <div class="tab-pane fade show active" id="bookingDetails" role="tabpanel" aria-labelledby="bookingDetails-tab">
+                                                            <label class="pay">Customer Name</label>
+                                                            <input type="text" name="holdername" placeholder="Customer Name" />
+
+                                                            <label class="pay">NIC / Passport / Driving License</label>
+                                                            <input type="text" name="holdername" placeholder="NIC / Passport / Driving License" />
+
+                                                            <div class="row">
+                                                                <div class="col-8 col-md-6">
+                                                                    <label class="pay">Book Date</label>
+                                                                    <input type="date" name="cardno" id="cr_no" placeholder="From Location" minlength="19" maxlength="19" />
+                                                                </div>
+                                                                <div class="col-4 col-md-6">
+                                                                    <label class="pay">Number of Seats</label>
+                                                                    <input type="text" name="cvcpwd" placeholder="Number of Seats" class="placeicon" minlength="3" maxlength="3" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-8 col-md-6">
+                                                                    <label class="pay">From Location</label>
+                                                                    <input type="text" name="cardno" id="cr_no" placeholder="From Location" minlength="19" maxlength="19" />
+                                                                </div>
+                                                                <div class="col-4 col-md-6">
+                                                                    <label class="pay">To Location</label>
+                                                                    <input type="text" name="cvcpwd" placeholder="To Location" class="placeicon" minlength="3" maxlength="3" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+
+                                                                    <a class="btn btn-info placeicon" id="payment-tab" data-toggle="pill" href="#payment" role="tab" aria-controls="payment" aria-selected="false">NEXT &nbsp; &#xf178;</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                                                            <h2 id="heading2" class="text-danger">Payment Method</h2>
+                                                            <div class="radio-group">
+                                                                <div class='radio' data-value="credit"><img src="https://i.imgur.com/28akQFX.jpg" width="200px" height="60px" /></div>
+                                                                <div class='radio' data-value="paypal"><img src="https://i.imgur.com/5QFsx7K.jpg" width="200px" height="60px" /></div>
+                                                                <br />
+                                                            </div>
+                                                            <label class="pay">Name on Card</label>
+                                                            <input type="text" name="holdername" placeholder="Card Holder's Name" />
+                                                            <div class="row">
+                                                                <div class="col-8 col-md-6">
+                                                                    <label class="pay">Card Number</label>
+                                                                    <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19" />
+                                                                </div>
+                                                                <div class="col-4 col-md-6">
+                                                                    <label class="pay">CVV</label>
+                                                                    <input type="password" name="cvcpwd" placeholder="&#9679;&#9679;&#9679;" class="placeicon" minlength="3" maxlength="3" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label class="pay">Expiration Date</label>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <input type="text" name="exp" id="exp" placeholder="MM/YY" minlength="5" maxlength="5" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-info placeicon" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +222,6 @@ function BookingCreate() {
                     </div>
                 </div>
             </div>
-
 
         </div>
     )
