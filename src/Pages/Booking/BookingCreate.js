@@ -4,41 +4,35 @@ import './Booking.css';
 
 function BookingCreate() {
 
-    const [trainName, settrainName] = useState("");
     const [type, settype] = useState("");
     const [img, setImg] = useState("");
-    const [tdate, setTdate] = useState("");
     const [from, setfrom] = useState("");
     const [to, setto] = useState("");
-    const [method, setMethod] = useState("");
-    const [name, setName] = useState("");
-    const [card, setCard] = useState("");
-    const [time, setTime] = useState("");
-    const [no, setNo] = useState("");
     const [departureTime, setdepartureTime] = useState("");
-
-
     const [CusName, setCusName] = useState("");
-    const [Bookdate, setBookdate] = useState("");
-    const [Traintime, setTraintime] = useState("");
+    const [cusId, setcusId] = useState("");
+    const [bookdate, setBookdate] = useState("");
+    const [traintime, setTraintime] = useState("");
+    const [noOfTickets, setnoOfTickets] = useState("");
+    const [total, settotal] = useState("");
+    const [trainId, settrainId] = useState("");
+    const [trainName, settrainName] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(
-            CusName,
-            Bookdate,
-            from,
-            to,
-            Traintime
-        );
 
         // Create a data object with the form values
         const data = {
             CusName,
-            Bookdate,
+            cusId,
+            bookdate,
             from,
             to,
-            Traintime
+            traintime,
+            noOfTickets,
+            total,
+            trainId,
+            trainName
         };
 
         try {
@@ -96,9 +90,7 @@ function BookingCreate() {
                                         <h4 style={{ color: "hsl(0,0%,0%,0.6)" }}>{trainName}</h4>
                                         <div >
                                             <div class="col-12 "><img class="img-fluid" src={`${img}`} style={{ height: "200px", width: "100%", objectFit: 'cover' }} /></div>
-
                                         </div>
-
                                         <hr />
                                         <div class="row lower">
                                             <div class="col text-lefta">Train Type</div>
@@ -112,7 +104,6 @@ function BookingCreate() {
                                             <div class="col text-lefta">To Location</div>
                                             <div class="col text-righta">{to}</div>
                                         </div>
-
                                         <hr />
                                         <div class="row lower">
                                             <div class="col text-lefta"><b>Total Price</b></div>
@@ -122,7 +113,6 @@ function BookingCreate() {
                                         <p class="text-muted text-center">Apply Terms and Condition</p>
                                     </div>
                                 </div>
-
                                 <div class="col-md-7 col-sm-12 p-0 box">
                                     <div class="card rounded-0 border-0 card2" id="paypage" style={{ marginLeft: '5%' }}>
                                         <div class="form-card">
@@ -150,17 +140,26 @@ function BookingCreate() {
                                                             <input type="text" name="holdername" placeholder="NIC / Passport / Driving License" />
 
                                                             <div class="row">
-                                                                <div class="col-8 col-md-6">
+                                                                <div class="col-8 col-md-4">
                                                                     <label class="pay">Book Date</label>
                                                                     <input type="date" name="cardno" id="cr_no" />
                                                                 </div>
-                                                                <div class="col-4 col-md-6">
+                                                                <div class="col-4 col-md-4">
                                                                     <label class="pay">Number of Seats</label><br />
                                                                     <select name="cvcpwd" class="placeicon" style={{ width: '100%', height: '43px' }}>
                                                                         <option value="1">1 Seat</option>
                                                                         <option value="2">2 Seats</option>
                                                                         <option value="3">3 Seats</option>
                                                                         <option value="4">4 Seats</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-4 col-md-4">
+                                                                    <label class="pay">Class</label><br />
+                                                                    <select name="cvcpwd" class="placeicon" style={{ width: '100%', height: '43px' }}>
+                                                                        <option value="1">First Class</option>
+                                                                        <option value="2">Second Class</option>
+                                                                        <option value="3">Third Class</option>
                                                                     </select>
                                                                 </div>
 

@@ -47,7 +47,7 @@ function App() {
           <Route path="/allusers" element={<AllUsers />} />
           <Route path="/edituser/:id" element={<EditUserAdmin />} />
           <Route path="/allbookings" element={<ViewAllBooking />} />
-          <Route path="/mybookings/:id" element={<ViewMyBookings />} />
+          <Route path="/mybookings" element={<ViewMyBookings />} />
           <Route path="/addbooking/:id" element={<BookingCreate />} />
           <Route path="/editbooking/:id" element={<BookingUpadate />} />
           <Route path="/allagents" element={<AllAgents />} />

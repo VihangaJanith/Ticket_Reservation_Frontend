@@ -2,27 +2,27 @@ import React from "react";
 import { useState, useEffect } from "react";
 function AdminHome() {
 
-    const [name, setName] = useState("");
-    const [userType1, setUserType] = useState("");
+  const [name, setName] = useState("");
+  const [userType1, setUserType] = useState("");
 
-    useEffect (() => {
-        const userType = localStorage.getItem('myData');
-        const userTypeObject = JSON.parse(userType);
-        const userName = userTypeObject.userRole;
-        console.log(userName)
-        setUserType(userName);
-        if (userName == '1') {
+  useEffect(() => {
+    const userType = localStorage.getItem('myData');
+    const userTypeObject = JSON.parse(userType);
+    const userName = userTypeObject.userRole;
+    console.log(userName)
+    setUserType(userName);
+    if (userName == '1') {
 
-            setName('Traveler Agent')
-        }
-        else {
-            setName('Backoffice Agent')
-        }
-    }, [])
+      setName('Traveler Agent')
+    }
+    else {
+      setName('Backoffice Agent')
+    }
+  }, [])
 
   return (
     <div>
-     
+
 
       <div
         style={{
@@ -60,7 +60,7 @@ function AdminHome() {
 
                         <div class="d-flex flex-row align-items-center mb-5">
                           <div class="form-outline mb-2 ">
-                           
+
                             <button
                               class="btn btn-lg btn-secondary btn-login fw-bold text-uppercase"
                               type="submit"
@@ -79,13 +79,13 @@ function AdminHome() {
                                 ></i>{" "}
                                 Traveler  Management{" "}
                               </a>
-                               
+
                             </button>
-                            
+
                           </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="form-outline mb-2 ">
-                         
+
                             <button
                               class="btn btn-lg btn-secondary btn-login fw-bold text-uppercase"
                               type="submit"
@@ -105,64 +105,64 @@ function AdminHome() {
                                 Train Management
                               </a>
                             </button>
-                           
+
                           </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="form-outline mb-2 ">
-                          {(userType1 == "1") ?
-                            <button
-                              class="btn btn-lg btn-secondary btn-login fw-bold text-uppercase"
-                              type="submit"
-                            >
-                              <a
-                                href="/adminhotelpackage"
-                                style={{
-                                  textDecoration: "none",
-                                  color: "black",
-                                }}
+                            {(userType1 == "1") ?
+                              <button
+                                class="btn btn-lg btn-secondary btn-login fw-bold text-uppercase"
+                                type="submit"
                               >
-                                {" "}
-                                <i
-                                  class="fa fa-hotel mr-2"
-                                  aria-hidden="true"
-                                ></i>
-                                Ticket Booking Management
-                              </a>
-                            </button>
-                            :(null)}
+                                <a
+                                  href="/allbookings"
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                  }}
+                                >
+                                  {" "}
+                                  <i
+                                    class="fa fa-hotel mr-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  Ticket Booking Management
+                                </a>
+                              </button>
+                              : (null)}
                           </div>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-5">
                           <div class="form-outline mb-2 ">
                             {(userType1 == "1") ?
-                            <button
-                              class="btn btn-lg btn-secondary btn-login fw-bold text-uppercase"
-                              type="submit"
-                            >
-                              <a
-                                href="/allagents"
-                                style={{
-                                  textDecoration: "none",
-                                  color: "black",
-                                }}
+                              <button
+                                class="btn btn-lg btn-secondary btn-login fw-bold text-uppercase"
+                                type="submit"
                               >
-                                {" "}
-                                <i
-                                  class="fa fa-swimmer mr-2"
-                                  aria-hidden="true"
-                                ></i>
-                                User Management
-                              </a>
-                            </button>
-                            :(null)}
+                                <a
+                                  href="/allagents"
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                  }}
+                                >
+                                  {" "}
+                                  <i
+                                    class="fa fa-swimmer mr-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  User Management
+                                </a>
+                              </button>
+                              : (null)}
                           </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="form-outline mb-2 ">
-                           
+
                           </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="form-outline mb-2 ">
-                       
+
                           </div>
                         </div>
                         <hr class="my-1" />
