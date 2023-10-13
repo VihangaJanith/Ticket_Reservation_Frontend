@@ -93,7 +93,7 @@ function ViewMyBookings() {
                                                         <text>Edit Details</text>
                                                     </button>
                                                     <button class="btn btn-danger btn-sm " style={{ border: "0", backgroundColor: booking.status == "Pending" ? "#722828" : "" }} type="button" onClick={(e) => deleteOrder(booking?.id, booking?.bookedDate)} >
-                                                        {booking.status == "Pending" ? <text>Cancle Reservation</text> : null}
+                                                        <text>Cancle Reservation</text>
                                                     </button>
                                                 </div>
                                             </div>
