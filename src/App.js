@@ -37,7 +37,7 @@ function App() {
     const userTypeObject = JSON.parse(userType);
 
     if (userTypeObject == null) {
-      setUserType("0")
+      setUserType("2")
     }
     else {
       if (userTypeObject.userRole == '1') {
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div>
-      {(userType1 == "0" || userType1 == "3") ?
+      {(userType1 == "2" || userType1 == "3") ?
         <NavBar />
         :
         <AdminNavbar />
@@ -63,7 +63,6 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Home />} />
-
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

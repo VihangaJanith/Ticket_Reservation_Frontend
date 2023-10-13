@@ -97,6 +97,10 @@ const Login = () => {
                 Login
               </button>
             </form>
+
+            <p className="mt-3" style={{ fontSize: '20px', textAlign: 'center' }}>
+              Don't have an account? <a href="/signup" style={{ textDecoration: 'none' }}>Register</a>
+            </p>
           </div>
         </div>
       </div>

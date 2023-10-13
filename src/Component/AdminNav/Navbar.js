@@ -17,20 +17,6 @@ const AdminNavbar = () => {
         })
     }, [])
 
-    useEffect(() => {
-        const myData = localStorage.getItem('myData');
-        const myDataObject = JSON.parse(myData);
-        const islogin = myDataObject;
-        setAdminName(myDataObject?.name)
-        console.log(islogin)
-        if (islogin == null) {
-            setLogin(true)
-        }
-        else {
-            setLogin(false)
-        }
-    }, [isLogin])
-
     const handleLogout = () => {
         localStorage.removeItem("myData");
     };
@@ -48,6 +34,40 @@ const AdminNavbar = () => {
         localStorage.removeItem("name");
         window.location.href = "/";
     };
+
+
+    const [userType1, setUserType] = useState("");
+
+    useEffect(() => {
+
+
+        const myData = localStorage.getItem('myData');
+        const myDataObject = JSON.parse(myData);
+        const islogin = myDataObject;
+        setAdminName(myDataObject?.name)
+        console.log(islogin)
+        if (islogin == null) {
+            setLogin(true)
+        }
+        else {
+            setLogin(false)
+        }
+
+        if (myDataObject == null) {
+            setUserType("2")
+        }
+        else {
+            if (myDataObject.userRole == '1') {
+                setUserType("1")
+            }
+            else if (myDataObject.userRole == '3') {
+                setUserType("3")
+            }
+            else {
+                setUserType("0")
+            }
+        }
+    }, [])
 
     const str = window.location.href;
 
@@ -78,10 +98,10 @@ const AdminNavbar = () => {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav  mb-2 mb-lg-0 ms-auto" style={{ marginRight: '5%' }}>
-                            <li className="nav-item">
+                            <li className="nav-item" >
                                 <a className={`nav-link nav-link-a-text me-3 ${isDashboard ? 'active' : ''}`} href="/Dashboard">Dashboard</a>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item" >
                                 <a className={`nav-link nav-link-a-text me-3 ${isallagents ? 'active' : ''}`} href="/allagents">Agent Management</a>
                             </li>
 
@@ -89,11 +109,11 @@ const AdminNavbar = () => {
                                 <a href='/alltrains' className={`nav-link me-3 nav-link-a-text ${isalltrains ? 'active' : ''}`}>Train Management</a>
                             </li>
 
-                            <li className="nav-item">
+                            <li className="nav-item" hidden={userType1 == "0"}>
                                 <a href='/allbookings' className={`nav-link me-3 nav-link-a-text ${isallbookings ? 'active' : ''}`}>  Booking Management</a>
                             </li>
 
-                            <li className="nav-item">
+                            <li className="nav-item" hidden={userType1 == "0"}>
                                 <a className={`nav-link nav-link-a-text me-3 ${isallusers ? 'active' : ''}`} href="/allusers" >User Management</a>
                             </li>
 

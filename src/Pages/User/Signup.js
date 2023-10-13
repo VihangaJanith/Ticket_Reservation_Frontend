@@ -135,6 +135,9 @@ const Signup = () => {
                 Register
               </button>
             </form>
+            <p className="mt-3" style={{ fontSize: '20px', textAlign: 'center' }}>
+              Have an account? <a href="/login" style={{ textDecoration: 'none' }}>Login</a>
+            </p>
           </div>
         </div>
       </div>
