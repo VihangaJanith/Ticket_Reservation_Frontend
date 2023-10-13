@@ -93,7 +93,15 @@ function BookingCreate() {
         setto(response.data.to);
         setdepartureTime(response.data.departureTime);
     }
+    useEffect(() => {
+        const userInfo = localStorage.getItem("name");
 
+        if (userInfo == null) {
+            alert("You need to login first");
+            window.location.href = "/login";
+
+        }
+    }, []);
     return (
         <div className="bookingcss" >
 
