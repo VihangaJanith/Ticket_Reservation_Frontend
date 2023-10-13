@@ -22,8 +22,6 @@ function AdminHome() {
 
   return (
     <div>
-
-
       <div
         style={{
           backgroundColor: "hsla(90, 100%, 89%, 0.55)",
@@ -66,7 +64,7 @@ function AdminHome() {
                               type="submit"
                             >
                               <a
-                                href="/get"
+                                href="/allagents"
                                 style={{
                                   textDecoration: "none",
                                   color: "black",
@@ -77,7 +75,7 @@ function AdminHome() {
                                   class="fa fa-user mr-2"
                                   aria-hidden="true"
                                 ></i>{" "}
-                                Traveler  Management{" "}
+                                Agent  Management{" "}
                               </a>
 
                             </button>
@@ -91,7 +89,7 @@ function AdminHome() {
                               type="submit"
                             >
                               <a
-                                href="/travelpackages/admin"
+                                href="/alltrains"
                                 style={{
                                   textDecoration: "none",
                                   color: "black",
@@ -140,7 +138,7 @@ function AdminHome() {
                                 type="submit"
                               >
                                 <a
-                                  href="/allagents"
+                                  href="/allusers"
                                   style={{
                                     textDecoration: "none",
                                     color: "black",

@@ -49,11 +49,11 @@ export default function RegisterUser({ }) {
                 alert(err);
             });
 
-            alert("Registration Successful")
+        alert("Registration Successful")
 
 
     }
-    
+
 
     const getData = async (e) => {
 
@@ -79,7 +79,7 @@ export default function RegisterUser({ }) {
                 }
             };
             setLoding(true);
-        
+
             const response = await axios.post(
                 "http://localhost:5068/api/Admin/login",
                 {
@@ -88,7 +88,7 @@ export default function RegisterUser({ }) {
                 },
                 config
             );
-        
+
             if (response.status === 200) {
                 // Successful login
                 const data = response.data;
@@ -101,7 +101,7 @@ export default function RegisterUser({ }) {
                 // Wrong password or other error
                 alert("Wrong password or other error occurred");
             }
-        
+
             setLoding(false);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -111,7 +111,7 @@ export default function RegisterUser({ }) {
                 setError(error.response?.data?.message || "An error occurred");
             }
         }
-        
+
 
     }
 
@@ -134,7 +134,7 @@ export default function RegisterUser({ }) {
                                     <label>
                                         <input
                                             type="radio"
-                                            value="1"
+                                            value="0"
                                             onChange={(e) => setRole(e.target.value)}
                                             checked={userRole === '0'}
                                         />

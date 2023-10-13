@@ -27,6 +27,9 @@ const Login = () => {
         console.log(response.data);
         localStorage.setItem("token", response.data.id);
         localStorage.setItem("name", response.data.username);
+        localStorage.setItem("myData", JSON.stringify({
+          "userRole": "3"
+        }));
         window.location.href = "/";
       } else {
         // Handle unsuccessful login, show an error message, etc.

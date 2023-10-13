@@ -24,11 +24,40 @@ import ProfileEditAdmin from "./Pages/Admin/Profile";
 import Reset from "./Pages/Admin/RestPass";
 import AdminHome from "./Pages/Admin/Dashboard";
 import AboutUs from "./Pages/AboutUs";
+import AdminNavbar from "./Component/AdminNav/Navbar";
+import { useEffect, useState } from "react";
 
 function App() {
+
+  const [userType1, setUserType] = useState("");
+
+  useEffect(() => {
+    const userType = localStorage.getItem('myData');
+    const userTypeObject = JSON.parse(userType);
+
+    if (userTypeObject == null) {
+      setUserType("0")
+    }
+    else {
+      if (userTypeObject.userRole == '1') {
+        setUserType("1")
+      }
+      else if (userTypeObject.userRole == '3') {
+        setUserType("3")
+      }
+      else {
+        setUserType("0")
+      }
+    }
+  }, [])
+
   return (
     <div>
-      <NavBar />
+      {(userType1 == "3") ?
+        <NavBar />
+        :
+        <AdminNavbar />
+      }
       <Router>
         <Routes>
           <Route path="/home" element={<Home />} />

@@ -27,7 +27,12 @@ const Navbar = () => {
             setLogin(true)
         }
         else {
-            setLogin(false)
+            if (islogin.userRole == '3') {
+                setLogin(true)
+            }
+            else {
+                setLogin(false)
+            }
         }
     }, [isLogin])
 
@@ -52,7 +57,7 @@ const Navbar = () => {
     const str = window.location.href;
 
     const isHome = str.includes("/home");
-    const isalltrains = str.includes("/alltrains");
+    const isalltrains = str.includes("/trainsList");
     const ismybookings = str.includes("/mybookings");
     const islogin = str.includes("/login");
     const isAboutUs = str.includes("/aboutus");
