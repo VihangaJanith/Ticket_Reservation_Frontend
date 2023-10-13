@@ -234,7 +234,7 @@ function BookingCreate() {
 
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-info placeicon" style={{ width: '100%' }} />
+                                                                        <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-success placeicon" style={{ width: '100%', color: 'white' }} />
                                                                     </div>
                                                                 </div>
                                                             </div>

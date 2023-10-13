@@ -211,7 +211,7 @@ function BookingEdit() {
                                                                         <input type="button" value="Cancel" class="btn btn-warning placeicon" style={{ width: '100%' }} onClick={() => { window.location.replace("/mybookings") }} />
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <input type="submit" value="Update Details" class="btn btn-info placeicon" style={{ width: '100%' }} />
+                                                                        <input type="submit" value="Update Details" class="btn btn-success placeicon" style={{ width: '100%', color: 'white' }} />
                                                                     </div>
                                                                 </div>
                                                             </div>

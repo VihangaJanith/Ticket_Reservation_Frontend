@@ -29,13 +29,25 @@ function ViewMyBookings() {
             })
     }
 
-    const deleteOrder = (e) => {
-        const orderid = e.target.id;
-        axios.delete(`https://foodordersystm.onrender.com/foodorder/admin/delete/${orderid}`).then((res) => {
-            console.log(res.data)
-            alert('Order Deleted')
-            window.location.reload();
-        })
+    const deleteOrder = (id, date) => {
+        const orderDate = new Date(date);
+        const currentDate = new Date();
+
+        // Calculate the time difference in milliseconds
+        const timeDifference = currentDate - orderDate;
+
+        // Calculate the time difference in days
+        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+        if (daysDifference > 5) {
+            alert('You cannot cancel this reservation. You can cancel within 5 days of booking.');
+        } else {
+            axios.delete(`http://localhost:5068/api/booking/${id}`).then((res) => {
+                console.log(res.data)
+                alert('Reservation Cancelled Successfully')
+                window.location.reload();
+            })
+        }
     }
 
     return (
@@ -80,7 +92,7 @@ function ViewMyBookings() {
                                                     <button onClick={() => { window.location.replace(`./editbooking/${booking?.id}`) }} style={{ border: "0", backgroundColor: booking.status == "Pending" ? "#b14700" : "" }} className="btn btn-success btn-sm mb-2">
                                                         <text>Edit Details</text>
                                                     </button>
-                                                    <button class="btn btn-danger btn-sm " style={{ border: "0", backgroundColor: booking.status == "Pending" ? "#722828" : "" }} type="button" id={booking?.bookdate} onClick={(e) => deleteOrder(e)} >
+                                                    <button class="btn btn-danger btn-sm " style={{ border: "0", backgroundColor: booking.status == "Pending" ? "#722828" : "" }} type="button" onClick={(e) => deleteOrder(booking?.id, booking?.bookedDate)} >
                                                         {booking.status == "Pending" ? <text>Cancle Reservation</text> : null}
                                                     </button>
                                                 </div>
