@@ -51,6 +51,8 @@ const Navbar = () => {
     const handleuserLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
+        localStorage.removeItem("userInfo.");
+        localStorage.removeItem("myData");
         window.location.href = "/";
     };
 

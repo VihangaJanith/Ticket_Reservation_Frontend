@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import './Booking.css';
+import { useParams } from "react-router-dom";
 
-function BookingCreate() {
+function BookingEdit() {
+
+    const { id } = useParams();
 
     const [type, settype] = useState("");
     const [img, setImg] = useState("");
@@ -12,15 +15,35 @@ function BookingCreate() {
     const [tolocation, settolocation] = useState("");
     const [departureTime, setdepartureTime] = useState("");
     const [CusName, setCusName] = useState("");
-    const [CusNIC, setCusNIC] = useState("");
     const [cusId, setcusId] = useState("");
     const [bookdate, setBookdate] = useState("");
     const [traintime, setTraintime] = useState("");
     const [noOfTickets, setnoOfTickets] = useState("");
-    const [TrainClass, settrainClass] = useState("");
     const [total, settotal] = useState("750.00");
     const [trainId, settrainId] = useState("");
     const [trainName, settrainName] = useState("");
+    const [CusNIC, setCusNIC] = useState("");
+    const [Class, setClass] = useState("");
+
+    const [getBookingData, setgetBookingData] = useState();
+
+    useEffect(() => {
+        getBookingDetails();
+    }, [id])
+
+    const getBookingDetails = async () => {
+        const response = await axios.get(`http://localhost:5068/api/booking/${id}`);
+        settrainId(response.data.trainId)
+        setBookdate(response.data.bookdate)
+        setfromlocation(response.data.from)
+        settolocation(response.data.to)
+        setnoOfTickets(response.data.noOfTickets)
+        settotal(response.data.total)
+        setCusName(response.data.cusName)
+        setCusNIC(response.data.cusNIC)
+        setClass(response.data.trainClass)
+        setgetBookingData(response.data)
+    }
 
     useEffect(() => {
         const id = localStorage.getItem("token");
@@ -35,27 +58,23 @@ function BookingCreate() {
 
         // Create a data object with the form values
         const data = {
-            "cusName": CusName,
-            "cusNIC": CusNIC,
-            "cusId": cusId,
+            ...getBookingData,
             "bookdate": bookdate,
             "from": fromlocation,
             "to": tolocation,
-            "traintime": departureTime,
             "noOfTickets": noOfTickets,
-            "trainClass": TrainClass,
             "total": total,
-            "trainId": trainId,
-            "trainName": trainName
+            "cusNIC": CusNIC,
+            "trainClass": Class
         };
 
         try {
-            const response = await axios.post(
-                "http://localhost:5068/api/booking",
+            const response = await axios.put(
+                `http://localhost:5068/api/booking/${id}`,
                 data
             );
 
-            alert("Booking Added Successfully");
+            alert("Details Update Successfully");
 
             // Handle the response as needed
             console.log("Server response:", response.data);
@@ -66,27 +85,21 @@ function BookingCreate() {
             setnoOfTickets("");
             settolocation("");
             setfromlocation("");
-            setCusName("");
-            setCusNIC("");
-            settrainClass("");
 
         } catch (error) {
             // Handle any errors that occur during the POST request
             console.error("Error:", error);
         }
-
     };
 
     useEffect(() => {
         getTrainDetails();
-    }, [])
+    }, [trainId])
 
     const getTrainDetails = async () => {
-        const id = window.location.pathname.split("/")[2];
-        const response = await axios.get(`http://localhost:5068/api/trains/${id}`);
+        const response = await axios.get(`http://localhost:5068/api/trains/${trainId}`);
         console.log(response.data);
         settrainName(response.data.trainName);
-        settrainId(response.data.id);
         settype(response.data.type);
         setImg(response.data.imageURL);
         setfrom(response.data.from);
@@ -145,9 +158,7 @@ function BookingCreate() {
                                                             <li class="nav-item">
                                                                 <a class="nav-link active" id="bookingDetails-tab" data-toggle="pill" href="#bookingDetails" role="tab" aria-controls="bookingDetails" aria-selected="true">Booking Details</a>
                                                             </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" id="payment-tab" data-toggle="pill" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment Details</a>
-                                                            </li>
+
                                                         </ul>
 
 
@@ -155,19 +166,19 @@ function BookingCreate() {
 
                                                             <div class="tab-pane fade show active" id="bookingDetails" role="tabpanel" aria-labelledby="bookingDetails-tab">
                                                                 <label class="pay">Customer Name</label>
-                                                                <input type="text" name="holdername" placeholder="Customer Name" required onChange={(e) => { setCusName(e.target.value) }} />
+                                                                <input type="text" name="CusName" value={CusName} placeholder="Customer Name" required disabled />
 
                                                                 <label class="pay">NIC / Passport / Driving License</label>
-                                                                <input type="text" name="CusNIC" required placeholder="NIC / Passport / Driving License" onChange={(e) => { setCusNIC(e.target.value) }} />
+                                                                <input type="text" name="CusNIC" value={CusNIC} required placeholder="NIC / Passport / Driving License" disabled />
 
                                                                 <div class="row">
                                                                     <div class="col-8 col-md-4">
                                                                         <label class="pay">Book Date</label>
-                                                                        <input required type="date" name="cardno" id="cr_no" onChange={(e) => { setBookdate(e.target.value) }} />
+                                                                        <input required type="date" value={bookdate} name="bookdate" id="cr_no" onChange={(e) => { setBookdate(e.target.value) }} />
                                                                     </div>
                                                                     <div class="col-4 col-md-4">
                                                                         <label class="pay">Number of Seats</label><br />
-                                                                        <select required name="cvcpwd" class="placeicon" onChange={(e) => { setnoOfTickets(e.target.value) }} style={{ width: '100%', height: '43px' }}>
+                                                                        <select required value={noOfTickets} name="noOfTickets" class="placeicon" onChange={(e) => { setnoOfTickets(e.target.value) }} style={{ width: '100%', height: '43px' }}>
                                                                             <option value="1">1 Seat</option>
                                                                             <option value="2">2 Seats</option>
                                                                             <option value="3">3 Seats</option>
@@ -177,7 +188,7 @@ function BookingCreate() {
 
                                                                     <div class="col-4 col-md-4">
                                                                         <label class="pay">Class</label><br />
-                                                                        <select onChange={(e) => { settrainClass(e.target.value) }} required name="cvcpwd" class="placeicon" style={{ width: '100%', height: '43px' }}>
+                                                                        <select required name="Class" value={Class} class="placeicon" style={{ width: '100%', height: '43px' }} onChange={(e) => { setClass(e.target.value) }}>
                                                                             <option value="1">First Class</option>
                                                                             <option value="2">Second Class</option>
                                                                             <option value="3">Third Class</option>
@@ -188,56 +199,21 @@ function BookingCreate() {
                                                                 <div class="row">
                                                                     <div class="col-8 col-md-6">
                                                                         <label class="pay">From Location</label>
-                                                                        <input required type="text" name="cardno" id="cr_no" onChange={(e) => { setfromlocation(e.target.value) }} placeholder="From Location" />
+                                                                        <input required type="text" value={fromlocation} name="fromlocation" id="cr_no" onChange={(e) => { setfromlocation(e.target.value) }} placeholder="From Location" />
                                                                     </div>
                                                                     <div class="col-4 col-md-6">
                                                                         <label class="pay">To Location</label>
-                                                                        <input required type="text" name="cvcpwd" onChange={(e) => { settolocation(e.target.value) }} placeholder="To Location" class="placeicon" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <a class="btn btn-info placeicon w-100" id="payment-tab" data-toggle="pill" href="#payment" role="tab" aria-controls="payment" aria-selected="false">NEXT &nbsp; &#xf178;</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                                                                <h2 id="heading2" class="text-danger">Payment Method</h2>
-                                                                <div class="radio-group">
-                                                                    <div class='radio' data-value="credit"><img src="https://i.imgur.com/28akQFX.jpg" width="200px" height="60px" /></div>
-                                                                    <div class='radio' data-value="paypal"><img src="https://i.imgur.com/5QFsx7K.jpg" width="200px" height="60px" /></div>
-                                                                    <br />
-                                                                </div>
-                                                                <label class="pay">Name on Card</label>
-                                                                <input required type="text" name="holdername" placeholder="Card Holder's Name" />
-                                                                <div class="row">
-                                                                    <div class="col-8 col-md-6">
-                                                                        <label class="pay">Card Number</label>
-                                                                        <input required type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="16" maxlength="16" />
-                                                                    </div>
-                                                                    <div class="col-4 col-md-6">
-                                                                        <label class="pay">CVV</label>
-                                                                        <input required type="password" name="cvcpwd" placeholder="&#9679;&#9679;&#9679;" class="placeicon" minlength="3" maxlength="3" />
+                                                                        <input required type="text" value={tolocation} name="tolocation" onChange={(e) => { settolocation(e.target.value) }} placeholder="To Location" class="placeicon" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <label class="pay">Expiration Date</label>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <input required type="text" name="exp" id="exp" placeholder="MM/YY" minlength="5" maxlength="5" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-info placeicon" style={{ width: '100%' }} />
+                                                                        <input type="submit" value="Update Details" class="btn btn-info placeicon" style={{ width: '100%' }} />
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+
                                                         </div>
 
                                                     </div>
@@ -256,4 +232,4 @@ function BookingCreate() {
     )
 }
 
-export default BookingCreate
+export default BookingEdit

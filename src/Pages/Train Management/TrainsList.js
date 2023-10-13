@@ -26,6 +26,7 @@ function TrainsList() {
                   src={train.imageURL}
                   className="card-img-top"
                   alt={train.trainName}
+                  style={{ height: '200px', objectFit: 'cover' }}
                 />
                 <div className="card-body">
                   <div className="row">

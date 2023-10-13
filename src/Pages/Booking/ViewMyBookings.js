@@ -38,27 +38,13 @@ function ViewMyBookings() {
         })
     }
 
-    const setaa = (id) => {
-        const data = {
-            cmp: true
-        }
-        axios.put(`https://foodordersystm.onrender.com/foodorder/admin/update/${id}`, data);
-        window.location.reload();
-
-    }
-
     return (
         <div>
             <div className="">
-                <div class=""
-                    style={{
-                        backgroundColor: "rgb(255, 167, 84)",
-                        paddingBottom: "5px",
-                        paddingTop: "15px",
-                    }}
-                >
-                    <h1 style={{ marginLeft: "100px", }} >My Reservations</h1>
-                </div>
+                <header className="bg-primary text-white text-center py-5 mb-5">
+                    <h1>My Reserved Tickets</h1>
+                    <p>View My Reserved Tickets</p>
+                </header>
                 {bookings ? <div>
                     <div class=" mt-5 mb-5" >
                         <div class="d-flex justify-content-center" >
@@ -74,9 +60,10 @@ function ViewMyBookings() {
                                             </div>
 
                                             <div class="col-md-6 mt-1">
-                                                <h5>{index + 1}. &nbsp;{booking?.trainName} - ( {booking?.noOfTickets} )</h5>
+                                                <h5>{index + 1}. &nbsp;{booking?.trainName} - ( {booking?.noOfTickets} Tickets)
+                                                    <span class="badge bg-secondary ms-2">{booking?.status}</span></h5>
                                                 <div class="d-flex flex-row">
-                                                    <div className='fst-italic text-muted mb-3'> Ordered at {booking?.bookdate} ,  by Mr/Mrs.{booking?.bookdate}</div>
+                                                    <div className='fst-italic text-muted mb-3'> Booked at {booking?.bookedDate} ,  by Mr/Mrs.{booking?.cusName}</div>
                                                 </div>
                                                 <p class="text-justify  para mb-0">
                                                     If you want to cancel your reservation, please do it within 5 days of booking. Otherwise, you can't cancel your reservation.
@@ -84,18 +71,17 @@ function ViewMyBookings() {
                                             </div>
 
                                             <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+
                                                 <div class="d-flex flex-row align-items-center">
-                                                    <h4 class="mr-1">Rs. {booking?.bookdate}</h4>
+                                                    <h4 class="mr-1">Rs. {booking?.total}</h4>
                                                 </div>
                                                 <h6 class="text-success">   Thank you Mr/Mrs.{booking?.cusName}</h6>
                                                 <div class="d-flex flex-column mt-4">
-                                                    <button onClick={() => setaa(booking.status)} style={{ border: "0", backgroundColor: booking.status == "Pending" ? "#b14700" : "" }} className="btn btn-success btn-sm mb-2">
-                                                        {booking.status == "Pending" ? <text>Approve</text> : null}
-                                                        {booking.status == "Approve" ? <text>Not Approve</text> : null}
+                                                    <button onClick={() => { window.location.replace(`./editbooking/${booking?.id}`) }} style={{ border: "0", backgroundColor: booking.status == "Pending" ? "#b14700" : "" }} className="btn btn-success btn-sm mb-2">
+                                                        <text>Edit Details</text>
                                                     </button>
                                                     <button class="btn btn-danger btn-sm " style={{ border: "0", backgroundColor: booking.status == "Pending" ? "#722828" : "" }} type="button" id={booking?.bookdate} onClick={(e) => deleteOrder(e)} >
-                                                        {booking.status == "Pending" ? <text>Delete Reservation</text> : null}
-                                                        {booking.status == "Approve" ? <text>Cancle Reservation</text> : null}
+                                                        {booking.status == "Pending" ? <text>Cancle Reservation</text> : null}
                                                     </button>
                                                 </div>
                                             </div>

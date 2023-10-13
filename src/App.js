@@ -26,6 +26,7 @@ import AdminHome from "./Pages/Admin/Dashboard";
 import AboutUs from "./Pages/AboutUs";
 import AdminNavbar from "./Component/AdminNav/Navbar";
 import { useEffect, useState } from "react";
+import BookingEdit from "./Pages/Booking/EditBooking";
 
 function App() {
 
@@ -53,7 +54,7 @@ function App() {
 
   return (
     <div>
-      {(userType1 == "3") ?
+      {(userType1 == "0" || userType1 == "3") ?
         <NavBar />
         :
         <AdminNavbar />
@@ -78,6 +79,7 @@ function App() {
           <Route path="/allbookings" element={<ViewAllBooking />} />
           <Route path="/mybookings" element={<ViewMyBookings />} />
           <Route path="/addbooking/:id" element={<BookingCreate />} />
+          <Route path="/editbooking/:id" element={<BookingEdit />} />
           <Route path="/editbooking/:id" element={<BookingUpadate />} />
           <Route path="/allagents" element={<AllAgents />} />
           <Route path="/adminProfile" element={<ProfileEditAdmin />} />
