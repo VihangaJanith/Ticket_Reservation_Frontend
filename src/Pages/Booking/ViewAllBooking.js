@@ -15,24 +15,23 @@ function ViewAllBooking() {
         try {
             await axios.delete(`http://localhost:5068/api/booking/${id}`);
 
-            alert("Train Deleted Successfully");
-            //   window.location.href = "/alltrains";
+            alert("Booking Deleted Successfully");
+            window.location.href = "/allbookings";
         } catch (error) {
-            console.error("Error deleting train data:", error);
+            console.error("Error deleting Booking data:", error);
         }
     };
 
     //create a function to handle active and inactive if active make it inactive and vice versa
 
-    const handleActive = async (id) => {
+    const handleActive = async (id, train) => {
         try {
-            const response = await axios.get(
-                `http://localhost:5068/api/booking/${id}`
-            );
-            const train = response.data;
-            train.isActive = !train.isActive;
-            await axios.put(`http://localhost:5068/api/booking/${id}`, train);
-            alert("Train Details Updated Successfully");
+
+            await axios.put(`http://localhost:5068/api/booking/${id}`, {
+                ...train,
+                status: "Approved",
+            });
+            alert("Booking Approved Successfully");
             window.location.href = "/allbookings";
         } catch (error) {
             console.error("Error updating train data:", error);
@@ -42,21 +41,21 @@ function ViewAllBooking() {
     return (
         <>
             <header className="bg-primary text-white text-center py-5 mb-3">
-                <h1>All Trains List</h1>
-                <p>All Train Details</p>
+                <h1>All Reservation Details</h1>
+                <p>View All Reservation Details</p>
             </header>
-
+            {
+            },
             <div className="container">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Image</th>
+                            <th>Booked Date</th>
+                            <th>Customer Name</th>
                             <th>Train Name</th>
-                            <th>Type</th>
-                            <th>Start</th>
-                            <th>Destination</th>
-                            <th>Departure</th>
-                            <th>Arrival</th>
+                            <th>Train Time</th>
+                            <th>No of Tickets</th>
+                            <th>Total</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -65,56 +64,32 @@ function ViewAllBooking() {
                         {alltrains.map((train) => (
                             <tr key={train.id}>
                                 <td>
-                                    <img
-                                        src={train.imageURL}
-                                        alt={train.trainName}
-                                        style={{ width: "50px", height: "auto" }}
-                                    />
+                                    {train.bookedDate}
                                 </td>
                                 <td>{train.trainName}</td>
-                                <td>{train.type}</td>
-                                <td>{train.from}</td>
-                                <td>{train.to}</td>
-                                <td>{train.departureTime}</td>
-                                <td>{train.arrivalTime}</td>
+                                <td>{train.traintime}</td>
+                                <td>{train.cusName}</td>
+                                <td>{train.noOfTickets}</td>
+                                <td>{train.total}</td>
                                 <td>
-                                    {train.isActive === true ? (
-                                        <span className="badge bg-success">Active</span>
-                                    ) : (
-                                        <span className="badge bg-danger">Inctive</span>
-                                    )}
+                                    <button
+                                        disabled={train.status === "Approved"}
+                                        className={train.status === "Approved" ? "btn btn-success" : "btn btn-warning"}
+                                        onClick={() => handleActive(train.id, train)}
+                                        style={{ marginLeft: "5px" }} // Add left margin to create spacing
+                                    >
+                                        {train.status}
+                                    </button>
                                 </td>
                                 <td>
-                                    <a
-                                        className="btn btn-warning "
-                                        href={`/edittrain/${train.id}`}
-                                    >
-                                        Edit
-                                    </a>
                                     <button
-                                        className="btn btn-danger"
+                                        disabled={train.status === "Approved"}
+                                        className={"btn btn-danger"}
                                         onClick={() => handleDelete(train.id)}
                                         style={{ marginLeft: "5px" }} // Add left margin to create spacing
                                     >
                                         Delete
                                     </button>
-                                    {train.isActive === true ? (
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => handleActive(train.id)}
-                                            style={{ marginLeft: "5px" }} // Add left margin to create spacing
-                                        >
-                                            Deactivate
-                                        </button>
-                                    ) : (
-                                        <button
-                                            className="btn btn-success"
-                                            onClick={() => handleActive(train.id)}
-                                            style={{ marginLeft: "5px" }} // Add left margin to create spacing
-                                        >
-                                            Activate
-                                        </button>
-                                    )}
                                 </td>
                             </tr>
                         ))}
