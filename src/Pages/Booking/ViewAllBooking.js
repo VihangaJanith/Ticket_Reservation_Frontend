@@ -40,7 +40,7 @@ function ViewAllBooking() {
 
     return (
         <>
-            <header className="bg-primary text-white text-center py-5 mb-3">
+            <header className="bg-primary text-white text-center py-2 mb-3">
                 <h1>All Reservation Details</h1>
                 <p>View All Reservation Details</p>
             </header>

@@ -41,7 +41,7 @@ function AllTrains() {
 
   return (
     <>
-      <header className="bg-primary text-white text-center py-5 mb-3">
+      <header className="bg-primary text-white text-center py-2 mb-3">
         <h1>All Trains List</h1>
         <p>All Train Details</p>
       </header>

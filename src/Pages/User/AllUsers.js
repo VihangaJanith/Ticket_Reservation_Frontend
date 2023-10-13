@@ -41,9 +41,9 @@ function AllUsers() {
 
   return (
     <>
-      <header className="bg-primary text-white text-center py-5 mb-3">
-        <h1>All users List</h1>
-        <p>All user Details</p>
+      <header className="bg-primary text-white text-center py-2 mb-3">
+        <h1>All Users List</h1>
+        <p>All User Details</p>
       </header>
 
       <div className="container">

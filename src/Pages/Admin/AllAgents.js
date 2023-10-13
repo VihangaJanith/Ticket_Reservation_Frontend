@@ -11,13 +11,13 @@ function AllAgents() {
       setAllUsers(res.data);
     });
   }, []);
- 
+
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5068/api/Admin/${id}`);
 
       alert("User Deleted Successfully");
-  
+
       window.location.href = "/allagents";
     } catch (error) {
       console.error("Error deleting user data:", error);
@@ -41,7 +41,10 @@ function AllAgents() {
 
   return (
     <>
-
+      <header className="bg-primary text-white text-center py-2 mb-3">
+        <h1>All Agent List</h1>
+        <p>All Agent Details</p>
+      </header>
 
       <div className="container">
         <table className="table">
