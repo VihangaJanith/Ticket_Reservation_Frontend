@@ -64,6 +64,28 @@ const Navbar = () => {
     const islogin = str.includes("/login");
     const isAboutUs = str.includes("/aboutus");
     const [isDownloadDropdownOpen, setIsDownloadDropdownOpen] = useState(false);
+
+    const [userType1, setUserType] = useState("");
+
+    useEffect(() => {
+        const myData = localStorage.getItem('myData');
+        const myDataObject = JSON.parse(myData);
+
+        if (myDataObject == null) {
+            setUserType("2")
+        }
+        else {
+            if (myDataObject.userRole == '1') {
+                setUserType("1")
+            }
+            else if (myDataObject.userRole == '3') {
+                setUserType("3")
+            }
+            else {
+                setUserType("0")
+            }
+        }
+    }, [])
     return (
         <nav className={`navbar navbar-expand-lg navbar-light ${isSticky ? "stickynav" : "normalnav"}`} >
             <div className="container-fluid">
@@ -90,7 +112,7 @@ const Navbar = () => {
                             <a href='/trainsList' className={`nav-link me-3 nav-link-a-text ${isalltrains ? 'active' : ''}`}>Trains</a>
                         </li>
 
-                        <li className="nav-item">
+                        <li className="nav-item" hidden={userType1 != "3"}>
                             <a href='/mybookings' className={`nav-link me-3 nav-link-a-text ${ismybookings ? 'active' : ''}`}>My Bookings</a>
                         </li>
 

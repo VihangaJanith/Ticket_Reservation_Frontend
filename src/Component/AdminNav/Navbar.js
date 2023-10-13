@@ -23,7 +23,6 @@ const AdminNavbar = () => {
 
     useEffect(() => {
         const name = localStorage.getItem("name");
-
         if (name !== null || name !== undefined) {
             setName(name);
         }
@@ -39,8 +38,6 @@ const AdminNavbar = () => {
     const [userType1, setUserType] = useState("");
 
     useEffect(() => {
-
-
         const myData = localStorage.getItem('myData');
         const myDataObject = JSON.parse(myData);
         const islogin = myDataObject;
@@ -52,7 +49,6 @@ const AdminNavbar = () => {
         else {
             setLogin(false)
         }
-
         if (myDataObject == null) {
             setUserType("2")
         }
