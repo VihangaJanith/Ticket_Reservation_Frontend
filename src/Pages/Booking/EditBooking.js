@@ -118,7 +118,7 @@ function BookingEdit() {
                                 <div class="col-md-5 d-md-block d-none box">
                                     <div class="righta " style={{ backgroundColor: "white", border: "0px", paddingLeft: '10px' }}>
 
-                                        <div class="text-center mb-2"> <h2>Your Reservation Details</h2> </div>
+                                        <div class="text-center mb-2"> <h2>Edit Your Reservation Details</h2> </div>
                                         <hr class="text-center mb-4" />
                                         <h4 style={{ color: "hsl(0,0%,0%,0.6)" }}>{trainName}</h4>
                                         <div >
@@ -207,7 +207,10 @@ function BookingEdit() {
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-md-12">
+                                                                    <div class="col-md-6">
+                                                                        <input type="button" value="Cancel" class="btn btn-warning placeicon" style={{ width: '100%' }} onClick={() => { window.location.replace("/mybookings") }} />
+                                                                    </div>
+                                                                    <div class="col-md-6">
                                                                         <input type="submit" value="Update Details" class="btn btn-info placeicon" style={{ width: '100%' }} />
                                                                     </div>
                                                                 </div>
