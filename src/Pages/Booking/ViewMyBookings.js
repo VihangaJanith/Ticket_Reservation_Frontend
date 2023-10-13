@@ -67,7 +67,7 @@ function ViewMyBookings() {
 
                                             <div class="col-md-3 mt-1"><img
                                                 class="img-fluid img-responsive rounded product-image"
-                                                src="https://media.istockphoto.com/id/457433171/photo/red-high-speed-train-with-blurred-motion.jpg?s=612x612&w=0&k=20&c=dtaL6VyNhrKhM1-tQIE7OF3WcpVgc9SFEjFVmcOFFLM="
+                                                src="https://bsmedia.business-standard.com/_media/bs/img/article/2019-09/30/full/1569790979-4055.jpg"
                                                 style={{ height: '130px', marginTop: "14px" }} />
                                             </div>
 
