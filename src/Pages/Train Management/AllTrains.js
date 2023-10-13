@@ -46,6 +46,10 @@ function AllTrains() {
         <p>All Train Details</p>
       </header>
 
+      <div><button className="btn btn-info" style={{ marginLeft: '80%' }} onClick={() => { window.location.replace("/addtrain") }}>Add New Train</button></div>
+
+      <hr />
+
       <div className="container">
         <table className="table">
           <thead>

@@ -49,9 +49,9 @@ const Footer = () => {
                         <div className="col-md-2 col-sm-2 col-xs-2">
                             <h5 className="heading">Contact Us</h5>
                             <ul className="card-text">
-                                <li>SLIIT</li>
-                                <li>Malabe</li>
-                                <li>Kaduwela</li>
+                                <li>Train Department</li>
+                                <li>Colombo 2</li>
+                                <li>Sri Lanka</li>
                                 <li>071 5273881</li>
                             </ul>
                         </div>
